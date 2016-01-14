@@ -6,7 +6,8 @@ console.log('starting');
 
 app.get('/', function (req, res) {
   console.log('got a request');
-  res.send('Hello World');
+  var out = 'FOO=' + process.env.BAR
+  res.send(out);
 });
 
 var port = process.env.PORT || 8888;
