@@ -8,5 +8,9 @@
     {
       "ContainerPort": "8888"
     }
-  ]
+  ],
+  "Authentication": {
+    "Bucket": "elasticbeanstalk-us-west-2-412520076220",
+    "Key": "<DOCKER_CONFIG>"
+  }
 }
