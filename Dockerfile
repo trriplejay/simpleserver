@@ -1,3 +1,3 @@
 FROM node:4-onbuild
-ARG $mytag=none
+ARG mytag="none"
 EXPOSE 8888
