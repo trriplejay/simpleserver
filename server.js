@@ -11,6 +11,12 @@ app.get('/', function (req, res) {
   res.send(out);
 });
 
+app.get('/tag', function (req, res) {
+  console.log('got a request');
+  var tag = process.env.mytag;
+  res.send(tag || 'no tag in environment');
+});
+
 app2.get('/', function (req, res) {
   var message = 'admin use only';
   res.send(message);
