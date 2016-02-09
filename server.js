@@ -12,9 +12,9 @@ app.get('/', function (req, res) {
 });
 
 app.get('/tag', function (req, res) {
-  console.log('got a request');
-  var tag = process.env.mytag;
-  res.send(tag || 'no tag in environment');
+  console.log('got a tag request');
+  var tag = process.env.mytag || 'no tag in environment';
+  res.send(tag);
 });
 
 app2.get('/', function (req, res) {
