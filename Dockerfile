@@ -1,3 +1,3 @@
 FROM node:4-onbuild
-ENV mytag $BRANCH.$SHIPPABLE_BUILD_NUMBER
+ARG mytag=none
 EXPOSE 8888
