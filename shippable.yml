@@ -1,3 +1,27 @@
+# Language setting
 language: node_js
 
-script: true
+# Version number
+node_js:
+  - 0.12
+
+build:
+  pre_ci:
+    - echo "true"
+
+  pre_ci_boot:
+    image_name: drydock/u14nod
+    image_tag: prod
+    pull: true
+    options: '--privileged=true'
+
+  ci:
+    - ./build.sh
+
+integrations:
+  hub:
+    - integrationName: "trriplejay docker hub"
+      type: docker
+      branches:
+        only:
+          - master
