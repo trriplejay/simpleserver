@@ -7,7 +7,7 @@ console.log('starting');
 
 app.get('/', function (req, res) {
   console.log('got a request');
-  var out = 'FOO=' + process.env.BAR
+  var out = 'FOO=' + process.env.FOO;
   res.send(out);
 });
 
