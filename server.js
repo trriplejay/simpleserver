@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 
 app.get('/tag', function (req, res) {
   console.log('got a tag request');
-  var tag = process.env.mytag || 'no tag in environment';
+  var tag = process.env.BUILD_NUMBER || 'no build in environment';
   res.send(tag);
 });
 
