@@ -6,17 +6,10 @@ node_js:
   - 0.12
 
 build:
-  pre_ci:
-    - echo "true"
-
-  pre_ci_boot:
-    image_name: drydock/u14nod
-    image_tag: prod
-    pull: true
-    options: '--privileged=true'
 
   ci:
-    - ./build.sh
+    - sudo docker build -t trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER --build-arg mytag=$BRANCH.$SHIPPABLE_BUILD_NUMBER .
+    - sudo docker push trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER
 
 integrations:
   hub:
