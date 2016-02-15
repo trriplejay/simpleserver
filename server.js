@@ -7,8 +7,12 @@ console.log('starting');
 
 app.get('/', function (req, res) {
   console.log('got a request');
-  var out = 'FOO=' + process.env.FOO;
-  res.send(out);
+  var out = process.env.FOO;
+  var tag = process.env.BUILD_NUMBER || 'no tag found';
+  var response = '<html><h2>FOO=' + out + '</h2><h3>' +
+    'tag:' + tag + '</h3></html>';
+
+  res.send(response);
 });
 
 app.get('/tag', function (req, res) {
