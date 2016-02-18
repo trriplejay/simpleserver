@@ -20,7 +20,3 @@ integrations:
       branches:
         only:
           - master
-  notification:
-    - type: irc
-      recipients:
-        - irc.rizon.net#testshippable
