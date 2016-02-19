@@ -21,7 +21,7 @@ integrations:
         only:
           - master
   notifications:
-    - integrationName: "irc"
+    - integrationName: irc
       type: irc
       recipients:
         - "irc.rizon.net#testshippable"
