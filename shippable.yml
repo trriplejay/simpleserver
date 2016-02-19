@@ -20,7 +20,7 @@ integrations:
       branches:
         only:
           - master
-    - integrationName:
+    - integrationName: "irc"
       type: irc
       recipients:
         - "irc.rizon.net#testshippable"
