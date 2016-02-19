@@ -20,7 +20,7 @@ integrations:
       branches:
         only:
           - master
-  notification:
+  notifications:
     - integrationName: "irc"
       type: irc
       recipients:
