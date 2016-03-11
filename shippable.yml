@@ -15,6 +15,7 @@ build:
       image_tag: prod
 
   ci:
+    - mysql status
     - mysql -e 'create database myapp_test;'
     - sudo docker -v
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
