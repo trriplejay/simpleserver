@@ -12,6 +12,7 @@ build:
 
   pre_ci_boot:
       image_name: drydock/u14nodpls
+      image_tag: prod
 
   ci:
     - mysql -e 'create database myapp_test;'
