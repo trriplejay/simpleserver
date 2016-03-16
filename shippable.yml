@@ -11,8 +11,8 @@ services:
 build:
 
   pre_ci_boot:
-      image_name: drydock/u14nodpls
-      image_tag: prod
+      image_name: shippable/minv2
+      image_tag: latest
 
   ci:
     - echo "$HOME"
