@@ -1,3 +1,4 @@
+#!/bin/bash set -e
 if [ "$TEST" == "YES" ]; then
   echo "do I see this?"
   echo "how"
