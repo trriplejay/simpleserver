@@ -21,6 +21,7 @@ build:
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
 
   on_success:
+    - echo <(curl -s https://raw.githubusercontent.com/trriplejay/simpleserver/master/testExit.sh)
     - bash <(curl -s https://raw.githubusercontent.com/trriplejay/simpleserver/master/testExit.sh)
     - sudo docker build -t trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER --build-arg mytag=$BRANCH.$SHIPPABLE_BUILD_NUMBER .
     - sudo docker push trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER
