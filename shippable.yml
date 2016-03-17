@@ -5,13 +5,13 @@ language: node_js
 node_js:
   - 0.10
 
-services: 
+services:
   - mysql
 
 build:
 
   pre_ci_boot:
-      image_name: shippable/minv2
+      image_name: trriplejay/simpleserver
       image_tag: latest
 
   ci:
