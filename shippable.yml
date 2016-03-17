@@ -5,9 +5,6 @@ language: node_js
 node_js:
   - 0.10
 
-services:
-  - mysql
-
 build:
 
   pre_ci_boot:
@@ -19,6 +16,8 @@ build:
     - echo "$USER"
     - sudo docker -v
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+
+  on_success:
     - sudo docker build -t trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER --build-arg mytag=$BRANCH.$SHIPPABLE_BUILD_NUMBER .
     - sudo docker push trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER
 
