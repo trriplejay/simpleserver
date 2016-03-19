@@ -6,13 +6,15 @@ node_js:
   - 0.10
 
 env:
-  - TEST=YES
+  -
 
 build:
 
+  cache: true
+
   pre_ci_boot:
-      image_name: trriplejay/simpleserver
-      image_tag: latest
+      image_name: drydock/u14nodpls
+      image_tag: prod
 
   ci:
     - echo "$HOME"
@@ -21,9 +23,6 @@ build:
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
 
   on_success:
-    - curl -s https://raw.githubusercontent.com/trriplejay/simpleserver/master/testExit.sh > myfile.txt
-    - cat myfile.txt    
-    - bash <(curl -s https://raw.githubusercontent.com/trriplejay/simpleserver/master/testExit.sh)
     - sudo docker build -t trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER --build-arg mytag=$BRANCH.$SHIPPABLE_BUILD_NUMBER .
     - sudo docker push trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER
 
