@@ -51,3 +51,6 @@ integrations:
       application_name: trriplejayEBTest
       env_name: trriplejayebtest-env
       region: us-west-1
+      bucket_name: elasticbeanstalk-us-west-1-412520076220
+      image_name: trriplejay/simpleserver
+      image_tag: $BRANCH.$SHIPPABLE_BUILD_NUMBER
