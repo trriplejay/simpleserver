@@ -14,10 +14,6 @@ build:
 
   cache: true
 
-  pre_ci_boot:
-      image_name: drydock/u14nodpls
-      image_tag: prod
-
   ci:
     - echo "$HOME"
     - echo "$USER"
