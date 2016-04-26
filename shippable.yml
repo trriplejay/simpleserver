@@ -25,8 +25,8 @@ build:
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
     
   post_ci:
-    #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
-    - sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
+    - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
+    #- sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
     
     # ECR
     - docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
