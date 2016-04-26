@@ -6,7 +6,9 @@ node_js:
   - 0.10
 
 env:
-  - TEST=true
+  - global:
+    - TEST=true
+    - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
 
 build:
 
@@ -21,20 +23,29 @@ build:
     - echo "$USER"
     - sudo docker -v
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
-    - sudo docker build -t trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER .
-    #- sudo docker build -t trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER --build-arg mytag=$BRANCH.$SHIPPABLE_BUILD_NUMBER .
-    - sudo docker push trriplejay/simpleserver:$BRANCH.$SHIPPABLE_BUILD_NUMBER
+    
+  post_ci:
+    #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
+    - sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
+    
+    # ECR
+    - docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
+    - docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
+    #- docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
 
   on_success:
     - echo "yay"
 
 integrations:
   hub:
-    - integrationName: "trriplejay docker hub"
-      type: docker
-      branches:
-        only:
-          - master
+    #- integrationName: "trriplejay docker hub"
+    #  type: docker
+    #  branches:
+    #    only:
+    #      - master
+    - integrationName: "shippable demo ecr"
+      type: ecr
+      
   notifications:
     - integrationName: irc
       type: irc
@@ -46,13 +57,13 @@ integrations:
       on_success: always
       on_failure: always
 
-  deploy:
-    - integrationName: "shippable demo ecs"
-      type: aws
-      target: eb_paas
-      application_name: "trriplejayEBTest"
-      env_name: "trriplejayebtest-env"
-      region: "us-west-1"
-      bucket_name: "elasticbeanstalk-us-west-1-412520076220"
-      image_name: "trriplejay/simpleserver"
-      image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+  #deploy:
+  #  - integrationName: "shippable demo ecs"
+  #    type: aws
+  #    target: eb_paas
+  #    application_name: "trriplejayEBTest"
+  #    env_name: "trriplejayebtest-env"
+  #    region: "us-west-1"
+  #    bucket_name: "elasticbeanstalk-us-west-1-412520076220"
+  #    image_name: "trriplejay/simpleserver"
+  #    image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
