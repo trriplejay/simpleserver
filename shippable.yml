@@ -63,6 +63,7 @@ integrations:
         - ENV=$MYENV
         - CI=$MYCI
         - POSTCI=$MYPOSTCI
+        - BUILDNUM=$BUILD_NUMBER
         - dummy=string
       on_success: always
       on_start: always
