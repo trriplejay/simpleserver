@@ -57,8 +57,8 @@ integrations:
     - integrationName: test_start_success
       type: webhook
       payload:
-        - test: foo
-        - hello: world
+        - test=foo
+        - hello=world
       on_success: always
       on_start: always
 
