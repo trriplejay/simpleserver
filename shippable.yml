@@ -53,6 +53,14 @@ integrations:
           - master
       on_success: always
       on_failure: always
+      
+    - integrationName: test_start_success
+      type: webhook
+      payload:
+        - test: foo
+        - hello: world
+      on_success: always
+      on_start: always
 
   #deploy:
   #  - integrationName: "shippable demo ecs"
