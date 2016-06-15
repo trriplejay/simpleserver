@@ -9,7 +9,7 @@ env:
   global:
     - TEST=true
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
-    - ENV="im from env"
+    - MYENV="im from env"
 
 build:
 
@@ -20,7 +20,7 @@ build:
     - echo "$USER"
     - sudo docker -v
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
-    - CI="im from ci"
+    - MYCI="im from ci"
     
   post_ci:
     - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
@@ -30,7 +30,7 @@ build:
     - docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     - docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
-    - POSTCI="im from post_ci"
+    - MYPOSTCI="im from post_ci"
 
   on_success:
     - echo "yay"
@@ -60,9 +60,9 @@ integrations:
     - integrationName: test_start_success
       type: webhook
       payload:
-        - ENV=$ENV
-        - CI=$CI
-        - POSTCI=$POSTCI
+        - ENV=$MYENV
+        - CI=$MYCI
+        - POSTCI=$MYPOSTCI
         - dummy=string
       on_success: always
       on_start: always
