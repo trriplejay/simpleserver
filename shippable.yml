@@ -21,6 +21,7 @@ build:
     - sudo docker -v
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
+    - MYENV="actually updated in ci!"
     
   post_ci:
     - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
