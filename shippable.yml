@@ -28,9 +28,9 @@ build:
     #- sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
     
     # ECR
-    - docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
-    - docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
-    #- docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
+    #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
+    #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
+    - docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
     - MYPOSTCI="im from post_ci"
 
   on_success:
@@ -38,14 +38,14 @@ build:
 
 integrations:
   hub:
-    #- integrationName: "trriplejay docker hub"
-    #  type: docker
-    #  branches:
-    #    only:
-    #      - master
-    - integrationName: "shippable demo ecr"
-      type: ecr
-      region: us-west-2
+    - integrationName: "trriplejay docker hub"
+      type: docker
+      branches:
+        only:
+          - master
+    #- integrationName: "shippable demo ecr"
+    #  type: ecr
+    #  region: us-west-2
       
   notifications:
     - integrationName: irc
@@ -58,16 +58,16 @@ integrations:
       on_success: always
       on_failure: always
       
-    - integrationName: test_start_success
-      type: webhook
-      payload:
-        - ENV=$MYENV
-        - CI=$MYCI
-        - POSTCI=$MYPOSTCI
-        - BUILDNUM=$BUILD_NUMBER
-        - dummy=string
-      on_success: always
-      on_start: always
+#    - integrationName: test_start_success
+#      type: webhook
+#      payload:
+#        - ENV=$MYENV
+#        - CI=$MYCI
+#        - POSTCI=$MYPOSTCI
+#        - BUILDNUM=$BUILD_NUMBER
+#        - dummy=string
+#      on_success: always
+#      on_start: always
 
   #deploy:
   #  - integrationName: "shippable demo ecs"
