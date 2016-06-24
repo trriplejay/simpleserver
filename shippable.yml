@@ -13,7 +13,7 @@ env:
 
 build:
 
-  cache: true
+  #cache: true
 
   ci:
     - echo "$HOME"
