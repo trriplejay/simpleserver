@@ -22,6 +22,7 @@ build:
     - MYENV="actually updated in ci!"
     
   post_ci:
+    - echo "post_ci section"
     - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
     #- sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
     
