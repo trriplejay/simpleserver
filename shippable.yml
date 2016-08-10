@@ -33,7 +33,7 @@ build:
     - MYPOSTCI="im from post_ci"
 
   on_success:
-    - echo "huzzah"
+    - echo "huzzah!"
 
 integrations:
   hub:
