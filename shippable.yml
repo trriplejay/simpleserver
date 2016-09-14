@@ -20,7 +20,6 @@ build:
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!"
-    - ls -la $SHIPPABLE_ARTIFACTS_DIR/postjobenvs
 
   post_ci:
     - echo "post_ci section"
@@ -32,13 +31,9 @@ build:
     #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     - docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
     - MYPOSTCI="im from post_ci"
-    - ls -la $SHIPPABLE_ARTIFACTS_DIR/postjobenvs
 
   on_success:
     - echo "huzzah!"
-
-  push:
-    - ls -la $SHIPPABLE_ARTIFACTS_DIR/postjobenvs
 
 integrations:
   hub:
