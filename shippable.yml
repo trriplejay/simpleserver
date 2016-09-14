@@ -57,19 +57,21 @@ integrations:
       on_success: always
       on_failure: always
 
-    - integrationName: "ci trigger for nginx-image"
-      type: webhook
-      payload:
-        - versionName=stable
-      on_success: always
-      on_failure: never
-      
     - integrationName: "ci trigger for simple-image"
       type: webhook
       payload:
         - versionName=$BRANCH.$BUILD_NUMBER
       on_success: always
       on_failure: never
+      
+    - integrationName: "ci trigger for nginx-image"
+      type: webhook
+      payload:
+        - versionName=stable
+      on_success: always
+      on_failure: never
+
+
 
 #    - integrationName: test_start_success
 #      type: webhook
