@@ -60,7 +60,7 @@ integrations:
     - integrationName: "ci trigger for simple-image"
       type: webhook
       payload:
-        - versionName: $BRANCH.$BUILD_NUMBER
+        - versionName=$BRANCH.$BUILD_NUMBER
       on_success: always
       on_failure: never
 
