@@ -12,7 +12,6 @@ env:
     - MYENV="im from env"
 
 build:
-  cache: true
 
   ci:
     - echo "$HOME"
@@ -21,12 +20,12 @@ build:
     - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!"
-    
+
   post_ci:
     - echo "post_ci section"
     - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
     #- sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
-    
+
     # ECR
     #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
@@ -46,7 +45,7 @@ integrations:
     #- integrationName: "shippable demo ecr"
     #  type: ecr
     #  region: us-west-2
-      
+
   notifications:
     - integrationName: irc
       type: irc
@@ -57,7 +56,14 @@ integrations:
           - master
       on_success: always
       on_failure: always
-      
+
+    - integrationName: "ci trigger for simple-image"
+      type: webhook
+      payload:
+        - versionName: $BRANCH.$BUILD_NUMBER
+      on_success: always
+      on_failure: never
+
 #    - integrationName: test_start_success
 #      type: webhook
 #      payload:
