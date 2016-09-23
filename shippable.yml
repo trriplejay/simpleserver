@@ -93,6 +93,6 @@ integrations:
      type: aws
      application_name: "trriplejayEBTest"
      env_name: "trriplejayebtest-env"
-     region: "us-west-1"
+     region: "eu-west-1"
      image_name: "trriplejay/simpleserver"
      image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
