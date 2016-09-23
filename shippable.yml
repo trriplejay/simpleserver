@@ -57,19 +57,19 @@ integrations:
       on_success: always
       on_failure: always
 
-    - integrationName: "ci trigger for simple-image"
-      type: webhook
-      payload:
-        - versionName=$BRANCH.$BUILD_NUMBER
-      on_success: always
-      on_failure: never
-
-    - integrationName: "ci trigger for nginx-image"
-      type: webhook
-      payload:
-        - versionName=stable
-      on_success: always
-      on_failure: never
+    # - integrationName: "ci trigger for simple-image"
+    #   type: webhook
+    #   payload:
+    #     - versionName=$BRANCH.$BUILD_NUMBER
+    #   on_success: always
+    #   on_failure: never
+    #
+    # - integrationName: "ci trigger for nginx-image"
+    #   type: webhook
+    #   payload:
+    #     - versionName=stable
+    #   on_success: always
+    #   on_failure: never
 
 
 
@@ -84,13 +84,11 @@ integrations:
 #      on_success: always
 #      on_start: always
 
-  #deploy:
-  #  - integrationName: "shippable demo ecs"
-  #    type: aws
-  #    target: eb_paas
-  #    application_name: "trriplejayEBTest"
-  #    env_name: "trriplejayebtest-env"
-  #    region: "us-west-1"
-  #    bucket_name: "elasticbeanstalk-us-west-1-412520076220"
-  #    image_name: "trriplejay/simpleserver"
-  #    image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+  deploy:
+   - integrationName: "shippable demo ecs"
+     type: aws
+     application_name: "trriplejayEBTest"
+     env_name: "trriplejayebtest-env"
+     region: "us-west-1"
+     image_name: "trriplejay/simpleserver"
+     image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
