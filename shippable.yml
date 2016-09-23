@@ -93,7 +93,8 @@ integrations:
      type: aws
      application_name: "trriplejayEBTest"
      env_name: "trriplejayebtest-env"
+     target: eb_docker
      region: "eu-west-1"
      image_name: "trriplejay/simpleserver"
      image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
-     bucket_name: "elasticbeanstalk-eu-west-1-412520076220"
+     bucket_name: "elasticbeanstalk-eu-west-1-412520076221"
