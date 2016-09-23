@@ -96,3 +96,4 @@ integrations:
      region: "eu-west-1"
      image_name: "trriplejay/simpleserver"
      image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+     bucket_name: "elasticbeanstalk-eu-west-1-412520076220"
