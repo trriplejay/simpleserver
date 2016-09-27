@@ -35,7 +35,8 @@ build:
     - apt-get install python-dev
     # need to upgrade botocore due to a problem with ebs
     - pip install --upgrade botocore
-    - cd $SHIPPABLE_BUILD_DIR/node_modules
+    - mkdir testdir
+    - cd testdir
 
   on_success:
     - echo "huzzah!"
