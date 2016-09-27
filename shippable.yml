@@ -38,6 +38,7 @@ build:
     - mkdir testdir
     - touch Dockerfile
     - cd testdir
+    - cd $SHIPPABLE_BUILD_DIR
 
   on_success:
     - echo "huzzah!"
