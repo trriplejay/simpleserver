@@ -36,6 +36,7 @@ build:
     # need to upgrade botocore due to a problem with ebs
     - pip install --upgrade botocore
     - mkdir testdir
+    - touch Dockerfile
     - cd testdir
 
   on_success:
