@@ -6,6 +6,8 @@ node_js:
   - 0.10
 
 env:
+  - environment=integration
+  - environment=production
   global:
     - TEST=true
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
@@ -17,28 +19,24 @@ build:
     - echo "$HOME"
     - echo "$USER"
     - sudo docker -v
-    - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+    - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!"
 
   post_ci:
     - echo "post_ci section"
-    - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
-    #- sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
+    - docker build -t trriplejay/simpleserver:$environment.$BUILD_NUMBER .
+    - sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
 
     # ECR
     #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
-    - docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
+    - docker push trriplejay/simpleserver:$environment.$BUILD_NUMBER
     - MYPOSTCI="im from post_ci"
     - apt-get update
     - apt-get install python-dev
     # need to upgrade botocore due to a problem with ebs
-    - pip install --upgrade botocore
-    - mkdir testdir
-    - touch Dockerfile
-    - cd testdir
-    - cd $SHIPPABLE_BUILD_DIR
+    #- pip install --upgrade botocore
 
   on_success:
     - echo "huzzah!"
@@ -65,19 +63,19 @@ integrations:
       on_success: always
       on_failure: always
 
-    # - integrationName: "ci trigger for simple-image"
-    #   type: webhook
-    #   payload:
-    #     - versionName=$BRANCH.$BUILD_NUMBER
-    #   on_success: always
-    #   on_failure: never
-    #
-    # - integrationName: "ci trigger for nginx-image"
-    #   type: webhook
-    #   payload:
-    #     - versionName=stable
-    #   on_success: always
-    #   on_failure: never
+    - integrationName: "ci trigger for simple-image prod"
+      type: webhook
+      payload:
+        - versionName=production.$BUILD_NUMBER
+      on_success: always
+      on_failure: never
+
+    - integrationName: "ci trigger for simple-image int"
+      type: webhook
+      payload:
+        - versionName=integration.$BUILD_NUMBER
+      on_success: always
+      on_failure: never
 
 
 
