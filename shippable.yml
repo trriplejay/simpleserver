@@ -53,30 +53,30 @@ integrations:
     #  type: ecr
     #  region: us-west-2
 
-  notifications:
-    - integrationName: irc
-      type: irc
-      recipients:
-        - "irc.rizon.net#testshippable"
-      branches:
-        only:
-          - master
-      on_success: always
-      on_failure: always
-
-    - integrationName: "ci trigger for simple-image prod"
-      type: webhook
-      payload:
-        - versionName=production.$BUILD_NUMBER
-      on_success: always
-      on_failure: never
-
-    - integrationName: "ci trigger for simple-image int"
-      type: webhook
-      payload:
-        - versionName=integration.$BUILD_NUMBER
-      on_success: always
-      on_failure: never
+  # notifications:
+  #   - integrationName: irc
+  #     type: irc
+  #     recipients:
+  #       - "irc.rizon.net#testshippable"
+  #     branches:
+  #       only:
+  #         - master
+  #     on_success: always
+  #     on_failure: always
+  #
+  #   - integrationName: "ci trigger for simple-image prod"
+  #     type: webhook
+  #     payload:
+  #       - versionName=production.$BUILD_NUMBER
+  #     on_success: always
+  #     on_failure: never
+  #
+  #   - integrationName: "ci trigger for simple-image int"
+  #     type: webhook
+  #     payload:
+  #       - versionName=integration.$BUILD_NUMBER
+  #     on_success: always
+  #     on_failure: never
 
 
 
