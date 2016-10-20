@@ -8,7 +8,7 @@ node_js:
 env:
   matrix:
     - environment=integration
-    - environment=production
+    #- environment=production
   global:
     - TEST=true
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
