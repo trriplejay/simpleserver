@@ -29,13 +29,13 @@ build:
 
   post_ci:
     - echo "post_ci section"
-    - docker build -t trriplejay/simpleserver:$environment.$BUILD_NUMBER .
+    #- docker build -t trriplejay/simpleserver:$environment.$BUILD_NUMBER .
     # - sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
 
     # ECR
     #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
-    - docker push trriplejay/simpleserver:$environment.$BUILD_NUMBER
+    #- docker push trriplejay/simpleserver:$environment.$BUILD_NUMBER
     - MYPOSTCI="im from post_ci"
     - apt-get update
     - apt-get install python-dev
