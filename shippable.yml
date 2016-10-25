@@ -13,7 +13,7 @@ env:
     - TEST=true
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
     - MYENV="im from env"
-    
+
 
 build:
   cache: true
@@ -56,7 +56,7 @@ integrations:
     #  type: ecr
     #  region: us-west-2
 
-  # notifications:
+  notifications:
   #   - integrationName: irc
   #     type: irc
   #     recipients:
@@ -74,12 +74,12 @@ integrations:
   #     on_success: always
   #     on_failure: never
   #
-  #   - integrationName: "ci trigger for simple-image int"
-  #     type: webhook
-  #     payload:
-  #       - versionName=integration.$BUILD_NUMBER
-  #     on_success: always
-  #     on_failure: never
+    - integrationName: "ci trigger for simple-image int"
+      type: webhook
+      payload:
+        - versionName=integration.$BUILD_NUMBER
+      on_success: always
+      on_failure: never
 
 
 
