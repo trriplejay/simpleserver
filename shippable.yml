@@ -15,9 +15,8 @@ env:
     - MYENV="im from env"
     
 
-cache: true
-
 build:
+  cache: true
 
   ci:
     - echo "$HOME"
