@@ -7,8 +7,8 @@ node_js:
 
 env:
   matrix:
-    - environment=integration
-    #- environment=production
+    #- environment=integration
+    - environment=production
   global:
     - TEST=true
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
@@ -68,19 +68,19 @@ integrations:
   #     on_success: always
   #     on_failure: always
   #
-  #   - integrationName: "ci trigger for simple-image prod"
-  #     type: webhook
-  #     payload:
-  #       - versionName=production.$BUILD_NUMBER
-  #     on_success: always
-  #     on_failure: never
-  #
-    - integrationName: "ci trigger for simple-image int"
+    - integrationName: "ci trigger for simple-image prod"
       type: webhook
       payload:
-        - versionName=integration.$BUILD_NUMBER
+        - versionName=production.$BUILD_NUMBER
       on_success: always
       on_failure: never
+  
+  #   - integrationName: "ci trigger for simple-image int"
+  #     type: webhook
+  #     payload:
+  #       - versionName=integration.$BUILD_NUMBER
+  #     on_success: always
+  #     on_failure: never
 
 
 
