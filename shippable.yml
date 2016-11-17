@@ -59,7 +59,7 @@ integrations:
     #      - master
           
     - integrationName: "trriplejay gcr"
-      type: docker
+      type: gcr
       branches:
         only:
           - master
