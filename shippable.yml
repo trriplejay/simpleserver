@@ -48,7 +48,13 @@ build:
 
 integrations:
   hub:
-    - integrationName: "trriplejay docker hub"
+    #- integrationName: "trriplejay docker hub"
+    #  type: docker
+    #  branches:
+    #    only:
+    #      - master
+          
+    - integrationName: "trriplejay gcr"
       type: docker
       branches:
         only:
