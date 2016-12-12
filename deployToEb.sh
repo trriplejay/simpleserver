@@ -15,6 +15,7 @@ setup_env() {
   export AWS_EB_ENVIRONMENT_NAME="simpleEbApp-env" #environment should already exist on aws
   export AWS_EB_REGION="us-west-2" #region that the app/env are in
   export AWS_EB_IMAGE_NAME="$(jq -r '.sourceName' IN/simple-image-eb/version.json)"
+  export AWS_EB_IMAGE_NAME_ESCAPED=$(echo "$AWS_EB_IMAGE_NAME" | sed -e 's/\//\\\//g')
   export AWS_EB_IMAGE_TAG="$(jq -r '.version.versionName' IN/simple-image-eb/version.json)"
   export AWS_EB_VERSION_LABEL="shippable.$AWS_EB_ENVIRONMENT_NAME.$AWS_EB_IMAGE_TAG" #unique label
 
@@ -29,9 +30,9 @@ configure_aws() {
 deploy_to_eb() {
   export DOCKERRUN_PATH=IN/simple-repo-eb/gitRepo/
   pushd $DOCKERRUN_PATH
-
+  echo "deploying $AWS_EB_IMAGE_NAME:$AWS_EB_IMAGE_TAG to beanstalk"
   mv Dockerrun.aws.json /tmp/Dockerrun.tmp
-  cat /tmp/Dockerrun.tmp | sed 's/<IMAGE_NAME>/$AWS_EB_IMAGE_NAME/' | sed 's/<TAG>/$AWS_EB_IMAGE_TAG/' > Dockerrun.aws.json
+  cat /tmp/Dockerrun.tmp | sed 's/<IMAGE_NAME>/$AWS_EB_IMAGE_NAME_ESCAPED/' | sed 's/<TAG>/$AWS_EB_IMAGE_TAG/' > Dockerrun.aws.json
 
   echo | eb init "$AWS_EB_APPLICATION_NAME" -r "$AWS_EB_REGION"
   eb use "$AWS_EB_ENVIRONMENT_NAME"
