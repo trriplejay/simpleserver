@@ -14,8 +14,8 @@ setup_env() {
   export AWS_EB_APPLICATION_NAME="simple-eb-app" #application should already be created on aws
   export AWS_EB_ENVIRONMENT_NAME="simpleEbApp-env" #environment should already exist on aws
   export AWS_EB_REGION="us-west-2" #region that the app/env are in
-  export AWS_EB_IMAGE_NAME=$(jq -r '.sourceName' IN/simple-image-eb/version.json)
-  export AWS_EB_IMAGE_TAG=$(jq -r '.version.versionName' IN/simple-image-eb/version.json)
+  export AWS_EB_IMAGE_NAME="$(jq -r '.sourceName' IN/simple-image-eb/version.json)"
+  export AWS_EB_IMAGE_TAG="$(jq -r '.version.versionName' IN/simple-image-eb/version.json)"
   export AWS_EB_VERSION_LABEL="shippable.$AWS_EB_ENVIRONMENT_NAME.$AWS_EB_IMAGE_TAG" #unique label
 
 }
