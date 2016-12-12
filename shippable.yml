@@ -35,7 +35,7 @@ build:
     # GCR
     - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
     #- gcloud docker -- push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
-    
+
 
     # ECR
     #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
@@ -49,10 +49,10 @@ build:
 
   on_success:
     - echo "huzzah!"
-    
-  push: 
+
+  push:
     - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
-    
+
 integrations:
   hub:
     #- integrationName: "trriplejay docker hub"
@@ -60,7 +60,7 @@ integrations:
     #  branches:
     #    only:
     #      - master
-          
+
     - integrationName: "trriplejay gcr"
       type: gcr
       branches:
@@ -71,24 +71,24 @@ integrations:
     #  type: ecr
     #  region: us-west-2
 
-  #notifications:
-  #   - integrationName: irc
-  #     type: irc
-  #     recipients:
-  #       - "irc.rizon.net#testshippable"
-  #     branches:
-  #       only:
-  #         - master
-  #     on_success: always
-  #     on_failure: always
-  #
-  #  - integrationName: "ci trigger for simple-image prod"
-  #    type: webhook
-  #    payload:
-  #      - versionName=production.$BUILD_NUMBER
-  #    on_success: always
-  #    on_failure: never
-  
+  notifications:
+    # - integrationName: irc
+    #   type: irc
+    #   recipients:
+    #     - "irc.rizon.net#testshippable"
+    #   branches:
+    #     only:
+    #       - master
+    #   on_success: always
+    #   on_failure: always
+    #
+   - integrationName: "ci trigger for eb deploy"
+     type: webhook
+     payload:
+       - versionName=$BRANCH.$BUILD_NUMBER
+     on_success: always
+     on_failure: never
+
   #   - integrationName: "ci trigger for simple-image int"
   #     type: webhook
   #     payload:
