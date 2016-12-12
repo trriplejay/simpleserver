@@ -18,8 +18,8 @@ setup_env() {
   export AWS_EB_APPLICATION_NAME="simple-eb-app"
   export AWS_EB_ENVIRONMENT_NAME="simpleEbApp-env"
   export AWS_EB_REGION="us-west-2"
-  export AWS_EB_IMAGE_NAME=$(jq -r '.sourceName' IN/simple-image-eb/version.json) | sed -e 's/\//\\\//g')
-  export AWS_EB_IMAGE_TAG=$(jq -r '.version.versionName' IN/simple-image-eb/version.json) | sed -e 's/\//\\\//g')
+  export AWS_EB_IMAGE_NAME=$(jq -r '.sourceName' IN/simple-image-eb/version.json) | sed -e 's/\//\\\//g'
+  export AWS_EB_IMAGE_TAG=$(jq -r '.version.versionName' IN/simple-image-eb/version.json) | sed -e 's/\//\\\//g'
   export AWS_EB_VERSION_LABEL="shippable.$AWS_EB_ENVIRONMENT_NAME.$AWS_EB_IMAGE_TAG"
 
 }
