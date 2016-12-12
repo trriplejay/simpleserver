@@ -6,12 +6,6 @@ install_requirements() {
   pip install --upgrade --user awsebcli
 }
 
-configure_aws() {
-  aws configure set aws_access_key_id $aws_access_key_id
-  aws configure set aws_secret_access_key $aws_secret_access_key
-  aws configure set region us-west-2
-}
-
 setup_env() {
   source IN/myAwsCredentials/integration.env
 
@@ -22,6 +16,12 @@ setup_env() {
   export AWS_EB_IMAGE_TAG=$(jq -r '.version.versionName' IN/simple-image-eb/version.json) | sed -e 's/\//\\\//g'
   export AWS_EB_VERSION_LABEL="shippable.$AWS_EB_ENVIRONMENT_NAME.$AWS_EB_IMAGE_TAG"
 
+}
+
+configure_aws() {
+  aws configure set aws_access_key_id $aws_access_key_id
+  aws configure set aws_secret_access_key $aws_secret_access_key
+  aws configure set region us-west-2
 }
 
 modify_dockerrun() {
@@ -46,8 +46,8 @@ deploy_to_eb() {
 
 
 install_requirements
-configure_aws
 setup_env
+configure_aws
 modify_dockerrun
 init_eb
 deploy_to_eb
