@@ -32,7 +32,7 @@ deploy_to_eb() {
   pushd $DOCKERRUN_PATH
   echo "deploying $AWS_EB_IMAGE_NAME:$AWS_EB_IMAGE_TAG to beanstalk"
   mv Dockerrun.aws.json /tmp/Dockerrun.tmp
-  cat /tmp/Dockerrun.tmp | sed 's/<IMAGE_NAME>/$AWS_EB_IMAGE_NAME_ESCAPED/' | sed 's/<TAG>/$AWS_EB_IMAGE_TAG/' > Dockerrun.aws.json
+  cat /tmp/Dockerrun.tmp | sed 's/<IMAGE_NAME>/'$AWS_EB_IMAGE_NAME_ESCAPED'/' | sed 's/<TAG>/'$AWS_EB_IMAGE_TAG'/' > Dockerrun.aws.json
 
   echo | eb init "$AWS_EB_APPLICATION_NAME" -r "$AWS_EB_REGION"
   eb use "$AWS_EB_ENVIRONMENT_NAME"
