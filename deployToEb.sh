@@ -3,7 +3,9 @@
 install_requirements() {
   sudo apt-get install -y jq tree
   pip install awscli
-  pip install --upgrade --user awsebcli
+  aws --version
+  pip install awsebcli==3.7.8
+  eb --version
 }
 
 setup_env() {
