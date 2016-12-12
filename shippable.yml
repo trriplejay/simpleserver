@@ -16,7 +16,6 @@ env:
 
 
 build:
-  advancedReports: true
 
   ci:
     - echo "$HOME"
