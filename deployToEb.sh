@@ -26,30 +26,23 @@ configure_aws() {
   aws configure set region us-west-2
 }
 
-modify_dockerrun() {
+deploy_to_eb() {
   export DOCKERRUN_PATH=IN/simple-repo-eb/gitRepo/
   pushd $DOCKERRUN_PATH
 
   mv Dockerrun.aws.json /tmp/Dockerrun.tmp
   cat /tmp/Dockerrun.tmp | sed 's/<IMAGE_NAME>/$AWS_EB_IMAGE_NAME/' | sed 's/<TAG>/$AWS_EB_IMAGE_TAG/' > Dockerrun.aws.json
 
-  popd
-}
-
-init_eb() {
   echo | eb init "$AWS_EB_APPLICATION_NAME" -r "$AWS_EB_REGION"
   eb use "$AWS_EB_ENVIRONMENT_NAME"
-}
 
-deploy_to_eb() {
   git add -A
   eb deploy --staged -l $AWS_EB_VERSION_LABEL
+  popd
 }
 
 
 install_requirements
 setup_env
 configure_aws
-modify_dockerrun
-init_eb
 deploy_to_eb
