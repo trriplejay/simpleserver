@@ -21,6 +21,7 @@ build:
     - echo "$HOME"
     - echo "$USER"
     - sudo docker -v
+    - sudo docker ps -a
     - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!"
