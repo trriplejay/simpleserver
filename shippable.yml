@@ -25,7 +25,7 @@ build:
     - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!"
-    - echo "try again"
+    - echo "try again xxxxx"
 
   post_ci:
     - echo "post_ci section"
