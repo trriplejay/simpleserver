@@ -82,12 +82,12 @@ integrations:
     #   on_success: always
     #   on_failure: always
     #
-   - integrationName: "ci trigger for eb deploy"
-     type: webhook
-     payload:
-       - versionName=$BRANCH.$BUILD_NUMBER
-     on_success: always
-     on_failure: never
+    # - integrationName: "ci trigger for eb deploy"
+    #   type: webhook
+    #   payload:
+    #     - versionName=$BRANCH.$BUILD_NUMBER
+    #   on_success: always
+    #   on_failure: never
 
   #   - integrationName: "ci trigger for simple-image int"
   #     type: webhook
@@ -109,11 +109,11 @@ integrations:
 #      on_success: always
 #      on_start: always
 
-  #deploy:
-   #- integrationName: "trriplejay personal aws"
-   #  type: aws
-   #  application_name: "trriplejayEBTest"
-   #  env_name: "trriplejayebtest-env"
-   #  region: "us-west-1"
-   #  image_name: "trriplejay/simpleserver"
-   #  image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+  deploy:
+   - integrationName: "trriplejay personal aws"
+     type: aws
+     application_name: "trriplejayEBTest"
+     env_name: "trriplejayebtest-env"
+     region: "us-west-1"
+     image_name: "trriplejay/simpleserver"
+     image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
