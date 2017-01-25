@@ -20,7 +20,6 @@ build:
   ci:
     - echo "$HOME"
     - echo "$USER"
-    - echo "blah"
     - sudo docker -v
     - sudo docker ps -a
     - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
