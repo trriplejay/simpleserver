@@ -24,7 +24,7 @@ build:
     - sudo docker ps -a
     - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
-    - MYENV="actually updated in ci!"
+    - MYENV="actually updated in ci!!"
     - echo "try again xxx"
 
   post_ci:
