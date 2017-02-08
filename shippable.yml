@@ -72,15 +72,15 @@ integrations:
     #  region: us-west-2
 
   notifications:
-    # - integrationName: irc
-    #   type: irc
-    #   recipients:
-    #     - "irc.rizon.net#testshippable"
-    #   branches:
-    #     only:
-    #       - master
-    #   on_success: always
-    #   on_failure: always
+    - integrationName: irc
+      type: irc
+      recipients:
+        - "irc.rizon.net#testshippable"
+      branches:
+        only:
+          - master
+      on_success: always
+      on_failure: always
     #
     # - integrationName: "ci trigger for eb deploy"
     #   type: webhook
