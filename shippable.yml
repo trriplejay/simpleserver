@@ -109,11 +109,11 @@ integrations:
 #      on_success: always
 #      on_start: always
 
-  deploy:
-   - integrationName: "trriplejay personal aws"
-     type: aws
-     application_name: "trriplejayEBTest"
-     env_name: "trriplejayebtest-env"
-     region: "us-west-1"
-     image_name: "trriplejay/simpleserver"
-     image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+  # deploy:
+  #  - integrationName: "trriplejay personal aws"
+  #    type: aws
+  #    application_name: "trriplejayEBTest"
+  #    env_name: "trriplejayebtest-env"
+  #    region: "us-west-1"
+  #    image_name: "trriplejay/simpleserver"
+  #    image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
