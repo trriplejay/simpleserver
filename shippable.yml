@@ -42,10 +42,11 @@ build:
     #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
     - MYPOSTCI="im from post_ci"
-    - apt-get update
-    - apt-get install python-dev
+    #- apt-get update
+    #- apt-get install python-dev
     # need to upgrade botocore due to a problem with ebs
-    - pip install --upgrade botocore
+    #- pip install --upgrade botocore
+    - docker pull trriplejay/privateimg:latest
 
   on_success:
     - echo "huzzah!"
@@ -54,12 +55,12 @@ build:
     # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
 
 integrations:
-  # hub:
-  #   - integrationName: "trriplejay docker hub"
-  #     type: docker
-  #     branches:
-  #       only:
-  #         - master
+   hub:
+     - integrationName: "trriplejay docker hub"
+       type: docker
+       branches:
+         only:
+           - master
 
     # - integrationName: "trriplejay gcr"
     #   type: gcr
