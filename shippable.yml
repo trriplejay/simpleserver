@@ -89,12 +89,12 @@ integrations:
     #   on_success: always
     #   on_failure: never
 
-    - integrationName: "ci trigger for simple-image int"
-      type: webhook
-      payload:
-        - versionName=integration.$BUILD_NUMBER
-      on_success: always
-      on_failure: never
+   # - integrationName: "ci trigger for simple-image int"
+   #   type: webhook
+   #   payload:
+   #     - versionName=integration.$BUILD_NUMBER
+   #   on_success: always
+   #   on_failure: never
 
 
 
