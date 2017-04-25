@@ -64,7 +64,7 @@ integrations:
        branches:
          only:
            - master
-     - integrationName: "test-deploy-env"
+     - integrationName: "test-aws-env"
        type: ecr
 
     # - integrationName: "trriplejay gcr"
