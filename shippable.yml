@@ -21,6 +21,10 @@ build:
     - echo "====================================================="
     - printenv
     - echo "====================================================="
+    - sudo pip install 'awscli==1.11.44'
+    - aws configure set aws_access_key_id $ECR_AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $ECR_AWS_SECRET_ACCESS_KEY
+    - aws configure set region us-east-1
     - echo "$HOME"
     - echo "$USER"
     - sudo docker -v
