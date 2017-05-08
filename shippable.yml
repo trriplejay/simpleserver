@@ -1,6 +1,10 @@
 # Language setting
 language: node_js
 
+tags:
+  only:
+    - dev*
+
 # Version number
 node_js:
   - 0.10
