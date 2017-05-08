@@ -1,9 +1,10 @@
 # Language setting
 language: node_js
 
-tags:
-  only:
-    - dev*
+branches:
+  except:
+    - 1*
+    - 2*
 
 # Version number
 node_js:
