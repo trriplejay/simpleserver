@@ -1,15 +1,24 @@
 # Language setting
 language: node_js
 
+branches:
+  except:
+    - 1*
+    - 2*
+
 # Version number
 node_js:
   - 0.10
 
 env:
+  matrix:
+    #- environment=integration
+    - environment=production
   global:
     - TEST=true
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
     - MYENV="im from env"
+
 
 build:
 
@@ -17,67 +26,81 @@ build:
     - echo "$HOME"
     - echo "$USER"
     - sudo docker -v
-    - echo "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+    - sudo docker ps -a
+    - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
-    - MYENV="actually updated in ci!"
+    - MYENV="actually updated in ci!!"
+    - echo "try again xxx"
 
   post_ci:
     - echo "post_ci section"
-    - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
-    #- sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$BRANCH.$BUILD_NUMBER .
+    #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
+    # - sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
+
+    # GCR
+    # - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
+    #- gcloud docker -- push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
+
 
     # ECR
     #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
-    - docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
+    #- docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
     - MYPOSTCI="im from post_ci"
-    - apt-get update
-    - apt-get install python-dev
+    #- apt-get update
+    #- apt-get install python-dev
     # need to upgrade botocore due to a problem with ebs
-    - pip install --upgrade botocore
-    - mkdir testdir
-    - touch Dockerfile
-    - cd testdir
-    - cd $SHIPPABLE_BUILD_DIR
+    #- pip install --upgrade botocore
+    - docker pull trriplejay/privateimg:latest
 
   on_success:
     - echo "huzzah!"
 
+  push:
+    # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
+
 integrations:
-  hub:
-    - integrationName: "trriplejay docker hub"
-      type: docker
-      branches:
-        only:
-          - master
+   hub:
+     - integrationName: "trriplejay docker hub"
+       type: docker
+       branches:
+         only:
+           - master
+ 
+    # - integrationName: "trriplejay gcr"
+    #   type: gcr
+    #   branches:
+    #     only:
+    #       - master
+    #   agent_only: true
     #- integrationName: "shippable demo ecr"
     #  type: ecr
     #  region: us-west-2
 
-  notifications:
-    - integrationName: irc
-      type: irc
-      recipients:
-        - "irc.rizon.net#testshippable"
-      branches:
-        only:
-          - master
-      on_success: always
-      on_failure: always
-
-    # - integrationName: "ci trigger for simple-image"
+  #notifications:
+  #  - integrationName: irc
+  #    type: irc
+  #    recipients:
+  #      - "irc.rizon.net#testshippable"
+  #    branches:
+  #      only:
+  #        - master
+  #    on_success: always
+  #    on_failure: always
+    #
+    # - integrationName: "ci trigger for eb deploy"
     #   type: webhook
     #   payload:
     #     - versionName=$BRANCH.$BUILD_NUMBER
     #   on_success: always
     #   on_failure: never
-    #
-    # - integrationName: "ci trigger for nginx-image"
-    #   type: webhook
-    #   payload:
-    #     - versionName=stable
-    #   on_success: always
-    #   on_failure: never
+
+   # - integrationName: "ci trigger for simple-image int"
+   #   type: webhook
+   #   payload:
+   #     - versionName=integration.$BUILD_NUMBER
+   #   on_success: always
+   #   on_failure: never
 
 
 
@@ -93,7 +116,7 @@ integrations:
 #      on_start: always
 
   # deploy:
-  #  - integrationName: "shippable demo ecs"
+  #  - integrationName: "test-deploy-env"
   #    type: aws
   #    application_name: "trriplejayEBTest"
   #    env_name: "trriplejayebtest-env"
