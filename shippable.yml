@@ -23,9 +23,9 @@ env:
 build:
 
   ci:
-    - echo "BRANCH: $BRANCH"
-    - echo "BASE_BRANCH: $BASE_BRANCH"
-    - echo "HEAD_BRANCH: $HEAD_BRANCH"
+    - echo "BRANCH is $BRANCH"
+    - echo "BASE_BRANCH is $BASE_BRANCH"
+    - echo "HEAD_BRANCH is $HEAD_BRANCH"
     - echo "$HOME"
     - echo "$USER"
     - sudo docker -v
