@@ -74,7 +74,7 @@ integrations:
     #     only:
     #       - master
     #   agent_only: true
-     - integrationName: "shippable demo ecr"
+     - integrationName: "trriplejay personal ecr"
        type: ecr
        region: us-west-2
 
