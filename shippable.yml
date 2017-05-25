@@ -31,8 +31,8 @@ build:
     - MYCI="im from ci"
     - MYENV="actually updated in ci!!"
     - echo "try again xxx"
-    - export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
-    - aws configure list
+    #- export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
+    #- aws configure list
     - aws iam get-user
 
   post_ci:
@@ -54,7 +54,7 @@ build:
     #- apt-get install python-dev
     # need to upgrade botocore due to a problem with ebs
     #- pip install --upgrade botocore
-    - docker pull trriplejay/privateimg:latest
+    #- docker pull trriplejay/privateimg:latest
 
   on_success:
     - echo "huzzah!"
@@ -63,6 +63,8 @@ build:
     # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
 
 integrations:
+   generic:
+     - integrationName: "my-aws-keys"
    hub:
      - integrationName: "trriplejay docker hub"
        type: docker
@@ -76,9 +78,9 @@ integrations:
     #     only:
     #       - master
     #   agent_only: true
-     - integrationName: "trriplejay personal ecr"
-       type: ecr
-       region: us-west-2
+    # - integrationName: "trriplejay personal ecr"
+    #   type: ecr
+    #   region: us-west-2
 
   #notifications:
   #  - integrationName: irc
