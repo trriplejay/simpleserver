@@ -31,7 +31,7 @@ build:
     - MYCI="im from ci"
     - MYENV="actually updated in ci!!"
     - echo "try again xxx"
-    - export AWS_PROFILE=592719eacc9a750700ad3ec5
+    - export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
     - aws configure list
     - aws iam get-user
 
