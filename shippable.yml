@@ -1,6 +1,9 @@
 # Language setting
 language: node_js
 
+addons:
+  firefox: "26.0"
+
 branches:
   except:
     - 1*
@@ -23,6 +26,7 @@ env:
 build:
 
   ci:
+    - firefox --version
     - echo "$HOME"
     - echo "$USER"
     - sudo docker -v
