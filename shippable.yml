@@ -28,7 +28,7 @@ build:
   ci:
     - echo "IS_PULL_REQUEST IS: "$IS_PULL_REQUEST
     - firefox --version
-    - echo "$HOME"
+    - echo "$HOME hello world"
     - echo "$USER"
     - sudo docker -v
     - sudo docker ps -a
