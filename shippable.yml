@@ -1,14 +1,6 @@
 # Language setting
 language: node_js
 
-addons:
-  firefox: "26.0"
-
-branches:
-  except:
-    - 1*
-    - 2*
-
 # Version number
 node_js:
   - 0.10
@@ -27,7 +19,6 @@ build:
 
   ci:
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
-    - firefox --version
     - echo "$HOME"
     - echo "$USER"
     - sudo docker -v
