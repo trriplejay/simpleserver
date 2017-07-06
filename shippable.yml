@@ -32,6 +32,7 @@ build:
     - echo "$USER"
     - sudo docker -v
     - sudo docker ps -a
+    - MY_EB_ENV="test-environment"
     - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!!"
@@ -125,11 +126,11 @@ integrations:
 #      on_success: always
 #      on_start: always
 
-  # deploy:
-  #  - integrationName: "test-deploy-env"
-  #    type: aws
-  #    application_name: "trriplejayEBTest"
-  #    env_name: "trriplejayebtest-env"
-  #    region: "us-west-1"
-  #    image_name: "trriplejay/simpleserver"
-  #    image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+   deploy:
+    - integrationName: "trriplejay personal aws"
+      type: aws
+      application_name: "trriplejayEBTest"
+      env_name: $MY_EB_ENV
+      region: "us-west-1"
+      image_name: "trriplejay/simpleserver"
+      image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
