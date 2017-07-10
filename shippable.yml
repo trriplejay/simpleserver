@@ -29,6 +29,7 @@ build:
     image_tag: v5.6.1
 
   ci:
+    - echo $FAKE_VAR
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
     - firefox --version
     - echo "$HOME"
