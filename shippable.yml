@@ -44,7 +44,9 @@ build:
     - echo "build dir is-> $SHIPPABLE_BUILD_DIR"
     - sudo apt-get install -y tree
     
-    - tree -d /
+    - tree /build
+    - tree /tmp
+    - tree $SHIPPABLE_BUILD_DIR
 
   post_ci:
     - echo "post_ci section"
