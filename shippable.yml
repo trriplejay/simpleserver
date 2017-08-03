@@ -21,9 +21,9 @@ env:
 
 
 build:
-  pre_ci_boot:
-    image_name: drydock/u14nodall
-    image_tag: v5.6.1
+#  pre_ci_boot:
+#    image_name: drydock/u14nodall
+#    image_tag: v5.6.1
 
   ci:
     - echo $FAKE_VAR
