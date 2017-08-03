@@ -1,9 +1,6 @@
 # Language setting
 language: node_js
 
-addons:
-  firefox: "26.0"
-
 branches:
   except:
     - 1*
@@ -11,7 +8,7 @@ branches:
 
 # Version number
 node_js:
-  - 0.10
+  - 6.11.0
 
 env:
   matrix:
@@ -44,6 +41,8 @@ build:
     #- export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
     #- aws configure list
     - aws iam get-user
+    - sudo apt-get install -y tree
+    - tree /
 
   post_ci:
     - echo "post_ci section"
@@ -130,11 +129,11 @@ integrations:
 #      on_success: always
 #      on_start: always
 
-   deploy:
-    - integrationName: "trriplejay personal aws"
-      type: aws
-      application_name: "trriplejayEBTest"
-      env_name: $MY_EB_ENV
-      region: "us-west-1"
-      image_name: "trriplejay/simpleserver"
-      image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+   #deploy:
+   # - integrationName: "trriplejay personal aws"
+   #   type: aws
+   #   application_name: "trriplejayEBTest"
+   #   env_name: $MY_EB_ENV
+   #   region: "us-west-1"
+   #   image_name: "trriplejay/simpleserver"
+   #   image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
