@@ -41,7 +41,9 @@ build:
     #- export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
     #- aws configure list
     - aws iam get-user
+    - echo "build dir is-> $SHIPPABLE_BUILD_DIR"
     - sudo apt-get install -y tree
+    
     - tree /
 
   post_ci:
