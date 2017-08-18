@@ -22,18 +22,18 @@ integrations:
 
   notifications:
        
-    - integrationName: "shippable via trriplejay"
+    - integrationName: imperialchat
       type: slack
       recipients:
-        - "@john"
-        - "#slack-test"
+        - "@trriplejay"
+        - "#bot_scripts"
       on_success: always
       on_failure: never
 
-    - integrationName: "shippable via trriplejay"
+    - integrationName: imperialchat
       type: slack
       recipients:
-        - "@john"
-        - "#test-channel"
+        - "@trriplejay"
+        - "#bot_scripts"
       on_success: never
       on_failure: always
