@@ -18,8 +18,8 @@ build:
     # saving some info in the state of this job to use later in the pipeline
     - echo "save some state information for future pipeline use"
     - shipctl put_resource_state $JOB_NAME versionName $BUILD_NUMBER
-    - shipctl put_resource_state $JOB_NAME COMMIT $COMMIT
-    - shipctl put_resource_state $JOB_NAME BRANCH $BRANCH
+    - shipctl put_resource_state $JOB_NAME ciCommit $COMMIT
+    - shipctl put_resource_state $JOB_NAME ciBranch $BRANCH
     
 integrations:
    generic:
