@@ -42,7 +42,7 @@ integrations:
     - integrationName: email
       type: email
       recipients:
-        --last_committer
+        - --last_committer
         #- stockbauer@gmail.com
         
       on_success: always
