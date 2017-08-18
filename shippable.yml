@@ -23,23 +23,23 @@ integrations:
 
   notifications:
        
-    - integrationName: imperialchat
-      type: slack
-      recipients:
-        - "@trriplejay"
-        - "#bot_scripts"
-      on_success: always
-      on_failure: never
+    # - integrationName: imperialchat
+    #   type: slack
+    #   recipients:
+    #     - "@trriplejay"
+    #     - "#bot_scripts"
+    #   on_success: always
+    #   on_failure: never
 
-    - integrationName: "imperialchat failure"
-      type: slack
-      recipients:
-        - "@trriplejay"
-        - "#bot_scripts"
-      on_success: never
-      on_failure: always
+    # - integrationName: "imperialchat failure"
+    #   type: slack
+    #   recipients:
+    #     - "@trriplejay"
+    #     - "#bot_scripts"
+    #   on_success: never
+    #   on_failure: always
 
-    - integrationName: email-success
+    - integrationName: email
       type: email
       recipients:
         - stockbauer@gmail.com
@@ -49,7 +49,7 @@ integrations:
         only:
           - notifications
 
-    - integrationName: email-failure
+    - integrationName: email
       type: email
       recipients:
         - stockbauer@gmail.com
