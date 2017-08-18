@@ -9,7 +9,6 @@ build:
 
   ci:
    - echo "ci"
-   - cd fakedir
   post_ci:
     - echo "post_ci section"
     
