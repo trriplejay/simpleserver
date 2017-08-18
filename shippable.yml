@@ -42,6 +42,6 @@ integrations:
     - integrationName: email
       type: email
       recipients:
-        --owners
-        --last_committer
         - stockbauer@gmail.com
+      on_success: always
+      on_failure: always
