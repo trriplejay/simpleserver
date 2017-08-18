@@ -39,13 +39,22 @@ integrations:
       on_success: never
       on_failure: always
 
-    - integrationName: email
+    - integrationName: email-success
       type: email
       recipients:
-        - --last_committer
         - stockbauer@gmail.com
         
       on_success: always
+      branches:
+        only:
+          - notifications
+
+    - integrationName: email-failure
+      type: email
+      recipients:
+        - stockbauer@gmail.com
+        
+      on_success: never
       on_failure: always
       branches:
         only:
