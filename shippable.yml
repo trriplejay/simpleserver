@@ -28,8 +28,6 @@ integrations:
       recipients:
         - "@trriplejay"
         - "#bot_scripts"
-        - --owners
-        - --last_committer
       on_success: always
       on_failure: never
 
@@ -40,3 +38,10 @@ integrations:
         - "#bot_scripts"
       on_success: never
       on_failure: always
+
+    - integrationName: email
+      type: email
+      recipients:
+        --owners
+        --last_committer
+        - stockbauer@gmail.com
