@@ -43,7 +43,10 @@ integrations:
       type: email
       recipients:
         - --last_committer
-        #- stockbauer@gmail.com
+        - stockbauer@gmail.com
         
       on_success: always
       on_failure: always
+      branches:
+        only:
+          - notifications
