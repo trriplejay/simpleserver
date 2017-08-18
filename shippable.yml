@@ -31,10 +31,10 @@ integrations:
       on_success: always
       on_failure: never
 
-    - integrationName: "imperialchat failure"
-      type: slack
-      recipients:
-        - "@trriplejay"
-        - "#bot_scripts"
-      on_success: never
-      on_failure: always
+    # - integrationName: "imperialchat failure"
+    #   type: slack
+    #   recipients:
+    #     - "@trriplejay"
+    #     - "#bot_scripts"
+    #   on_success: never
+    #   on_failure: always
