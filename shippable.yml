@@ -31,7 +31,7 @@ integrations:
       on_success: always
       on_failure: never
 
-    - integrationName: imperialchat
+    - integrationName: "imperialchat failure"
       type: slack
       recipients:
         - "@trriplejay"
