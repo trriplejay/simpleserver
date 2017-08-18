@@ -1,135 +1,30 @@
 # Language setting
 language: node_js
 
-addons:
-  firefox: "26.0"
-
-branches:
-  except:
-    - 1*
-    - 2*
-
 # Version number
 node_js:
-  - 0.10
-
-env:
-  matrix:
-    #- environment=integration
-    - environment=production
-  global:
-    - TEST=true
-    - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
-    - MYENV="im from env"
+  - 6.8.0
+  - 7.1.0
 
 
 build:
 
   ci:
-    - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
-    - firefox --version
-    - echo "$HOME"
-    - echo "$USER"
-    - sudo docker -v
-    - sudo docker ps -a
-    - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
-    - MYCI="im from ci"
-    - MYENV="actually updated in ci!!"
-    - echo "try again xxx"
-    #- export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
-    #- aws configure list
-    - aws iam get-user
-
+    - echo "run my tests for nodejs version $SHIPPABLE_NODE_VERSION"
   post_ci:
-    - echo "post_ci section"
-    #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
-    # - sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
-
-    # GCR
-    # - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
-    #- gcloud docker -- push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
-
-
-    # ECR
-    #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
-    #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
-    #- docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
-    - MYPOSTCI="im from post_ci"
-    #- apt-get update
-    #- apt-get install python-dev
-    # need to upgrade botocore due to a problem with ebs
-    #- pip install --upgrade botocore
-    #- docker pull trriplejay/privateimg:latest
+    - echo "if tests passed, maye create some artifacts and upload somewhere (docker image, jar/war files, etc)"  
 
   on_success:
-    - echo "huzzah!"
-
-  push:
-    # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
-
+    # saving some info in the state of this job to use later in the pipeline
+    - echo "save some state information for future pipeline use"
+    - shipctl put_resource_state $JOB_NAME versionName $BUILD_NUMBER
+    - shipctl put_resource_state $JOB_NAME COMMIT $COMMIT
+    - shipctl put_resource_state $JOB_NAME BRANCH $BRANCH
+    
 integrations:
    generic:
      - integrationName: "my-aws-keys"
    hub:
      - integrationName: "trriplejay docker hub"
        type: docker
-       branches:
-         only:
-           - master
- 
-    # - integrationName: "trriplejay gcr"
-    #   type: gcr
-    #   branches:
-    #     only:
-    #       - master
-    #   agent_only: true
-    # - integrationName: "trriplejay personal ecr"
-    #   type: ecr
-    #   region: us-west-2
-
-  #notifications:
-  #  - integrationName: irc
-  #    type: irc
-  #    recipients:
-  #      - "irc.rizon.net#testshippable"
-  #    branches:
-  #      only:
-  #        - master
-  #    on_success: always
-  #    on_failure: always
-    #
-    # - integrationName: "ci trigger for eb deploy"
-    #   type: webhook
-    #   payload:
-    #     - versionName=$BRANCH.$BUILD_NUMBER
-    #   on_success: always
-    #   on_failure: never
-
-   # - integrationName: "ci trigger for simple-image int"
-   #   type: webhook
-   #   payload:
-   #     - versionName=integration.$BUILD_NUMBER
-   #   on_success: always
-   #   on_failure: never
-
-
-
-#    - integrationName: test_start_success
-#      type: webhook
-#      payload:
-#        - ENV=$MYENV
-#        - CI=$MYCI
-#        - POSTCI=$MYPOSTCI
-#        - BUILDNUM=$BUILD_NUMBER
-#        - dummy=string
-#      on_success: always
-#      on_start: always
-
-  # deploy:
-  #  - integrationName: "test-deploy-env"
-  #    type: aws
-  #    application_name: "trriplejayEBTest"
-  #    env_name: "trriplejayebtest-env"
-  #    region: "us-west-1"
-  #    image_name: "trriplejay/simpleserver"
-  #    image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+       
