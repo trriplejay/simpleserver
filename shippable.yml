@@ -92,7 +92,7 @@ integrations:
     #   agent_only: true
      - integrationName: "trriplejay personal ecr"
        type: ecr
-       region: us-west-2
+       region: us-east-1
 
   #notifications:
   #  - integrationName: irc
