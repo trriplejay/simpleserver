@@ -24,6 +24,7 @@ build:
   pre_ci_boot:
     image_name: 679404489841.dkr.ecr.us-east-1.amazonaws.com/docker-basic-node
     image_tag: master.5
+    pull: true
 
   ci:
     - echo $FAKE_VAR
