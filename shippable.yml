@@ -22,8 +22,8 @@ env:
 
 build:
   pre_ci_boot:
-    image_name: trriplejay/simpleserver
-    image_tag: latest
+    image_name: 679404489841.dkr.ecr.us-east-1.amazonaws.com/docker-basic-node
+    image_tag: master.5
 
   ci:
     - echo $FAKE_VAR
@@ -75,8 +75,8 @@ build:
     # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
 
 integrations:
-   generic:
-     - integrationName: "my-aws-keys"
+   #generic:
+   #  - integrationName: "my-aws-keys"
    hub:
      - integrationName: "trriplejay docker hub"
        type: docker
@@ -90,9 +90,9 @@ integrations:
     #     only:
     #       - master
     #   agent_only: true
-    # - integrationName: "trriplejay personal ecr"
-    #   type: ecr
-    #   region: us-west-2
+    - integrationName: "trriplejay personal ecr"
+      type: ecr
+      region: us-west-2
 
   #notifications:
   #  - integrationName: irc
