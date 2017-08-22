@@ -23,7 +23,7 @@ env:
 build:
   pre_ci_boot:
     image_name: 679404489841.dkr.ecr.us-east-1.amazonaws.com/docker-basic-node
-    image_tag: master.5
+    image_tag: latest
     pull: true
 
   ci:
@@ -93,7 +93,7 @@ integrations:
     #   agent_only: true
      - integrationName: "trriplejay personal ecr"
        type: ecr
-       region: us-east-1
+       region: us-west-1
 
   #notifications:
   #  - integrationName: irc
