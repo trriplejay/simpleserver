@@ -25,12 +25,15 @@ build:
    # image_name: 679404489841.dkr.ecr.us-west-1.amazonaws.com/docker-basic-node
    # image_tag: latest
    # pull: true
-
+  cache: true
+  cache_dir_list:
+    - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
     - echo $FAKE_VAR
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
     - echo "$HOME"
     - echo "$USER"
+    - npm install
     - sudo docker -v
     - sudo docker ps -a
     - MY_EB_ENV="test-environment"
@@ -51,7 +54,7 @@ build:
   post_ci:
     - echo "post_ci section"
     #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
-    # - sudo docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
+    - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
 
     # GCR
     # - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
