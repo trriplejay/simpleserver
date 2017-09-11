@@ -2,9 +2,9 @@
 language: node_js
 
 branches:
-  except:
-    - 1*
-    - 2*
+  only:
+    - master
+    - v0.*
 
 # Version number
 node_js:
@@ -54,7 +54,7 @@ build:
   post_ci:
     - echo "post_ci section"
     #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
-    - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
+    #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
 
     # GCR
     # - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
