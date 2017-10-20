@@ -92,7 +92,6 @@ integrations:
        branches:
          only:
            - master
-       agent_only: true
      #- integrationName: "trriplejay personal ecr"
      #  type: ecr
      #  region: us-west-1
