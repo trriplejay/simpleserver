@@ -52,12 +52,12 @@ build:
 
   post_ci:
     - echo "post_ci section"
-    #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
+    - docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
     #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
 
     # GCR
-    # - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
-    #- gcloud docker -- push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
+    - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
+    - gcloud docker -- push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
 
 
     # ECR
@@ -87,15 +87,15 @@ integrations:
      #    only:
      #      - master
  
-    # - integrationName: "trriplejay gcr"
-    #   type: gcr
-    #   branches:
-    #     only:
-    #       - master
-    #   agent_only: true
-     - integrationName: "trriplejay personal ecr"
-       type: ecr
-       region: us-west-1
+     - integrationName: "testGCRForRoles"
+       type: gcr
+       branches:
+         only:
+           - master
+       agent_only: true
+     #- integrationName: "trriplejay personal ecr"
+     #  type: ecr
+     #  region: us-west-1
 
   #notifications:
   #  - integrationName: irc
