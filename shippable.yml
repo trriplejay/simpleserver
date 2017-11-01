@@ -17,6 +17,7 @@ env:
     - TEST=true
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
     - MYENV="im from env"
+    - CONTAINER_ID=blank
 
 
 build:
@@ -29,7 +30,8 @@ build:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
     #- netstat -tulpn
-    - docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58
+    - docker rm -f 96602c48d462 || true
+    - CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
     - curl -XGET localhost:8080
     - echo $FAKE_VAR
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
@@ -73,6 +75,7 @@ build:
     # need to upgrade botocore due to a problem with ebs
     #- pip install --upgrade botocore
     #- docker pull trriplejay/privateimg:latest
+    - docker rm -f $CONTAINER_ID
 
   on_success:
     - echo "huzzah!"
