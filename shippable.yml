@@ -30,8 +30,6 @@ build:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
     #- netstat -tulpn
-    - docker rm -f 9af9bd97b387 6da6a6cc49e9
-    - docker ps -a
     - CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
     - curl -XGET localhost:8080
     - echo $FAKE_VAR
