@@ -82,7 +82,7 @@ build:
     - docker rm -f $CONTAINER_ID
     
   on_failure:
-    -docker rm -f $CONTAINER_ID
+    - docker rm -f $CONTAINER_ID
 
 integrations:
    generic:
