@@ -30,6 +30,8 @@ build:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
     #- netstat -tulpn
+    - docker rm -f 9af9bd97b387 6da6a6cc49e9
+    - docker ps -a
     - CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
     - curl -XGET localhost:8080
     - echo $FAKE_VAR
@@ -53,6 +55,7 @@ build:
     - tree /build
     - tree /tmp
     - tree $SHIPPABLE_BUILD_DIR
+    - docker ps -a
 
   post_ci:
     - echo "post_ci section"
@@ -74,13 +77,14 @@ build:
     # need to upgrade botocore due to a problem with ebs
     #- pip install --upgrade botocore
     #- docker pull trriplejay/privateimg:latest
-    - docker rm -f $CONTAINER_ID
+    
 
   on_success:
     - echo "huzzah!"
-
-  push:
-    # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
+    - docker rm -f $CONTAINER_ID
+    
+  on_failure:
+    -docker rm -f $CONTAINER_ID
 
 integrations:
    generic:
