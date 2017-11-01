@@ -29,7 +29,8 @@ build:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
     #- netstat -tulpn
-    - docker run -d -p 127.0.0.1:8080:80 trriplejay/simpleserver:master.58
+    - docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58
+    - curl -XGET localhost:8080
     - echo $FAKE_VAR
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
     - echo "$HOME"
@@ -46,7 +47,7 @@ build:
     #- aws configure list
     #- aws iam get-user
     - echo "build dir is-> $SHIPPABLE_BUILD_DIR"
-    - sudo apt-get install -y tree
+    #- sudo apt-get install -y tree
     
     - tree /build
     - tree /tmp
@@ -58,8 +59,8 @@ build:
     #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
 
     # GCR
-    - docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
-    - gcloud docker -- push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
+    #- docker build -t gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER .
+    #- gcloud docker -- push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
 
 
     # ECR
@@ -80,8 +81,8 @@ build:
     # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
 
 integrations:
-   #generic:
-   #  - integrationName: "my-aws-keys"
+   generic:
+     - integrationName: "my-aws-keys"
    hub:
      #- integrationName: "trriplejay docker hub"
      #  type: docker
@@ -89,11 +90,11 @@ integrations:
      #    only:
      #      - master
  
-     - integrationName: "testGCRForRoles"
-       type: gcr
-       branches:
-         only:
-           - master
+     #- integrationName: "testGCRForRoles"
+     #  type: gcr
+     #  branches:
+     #    only:
+     #      - master
      #- integrationName: "trriplejay personal ecr"
      #  type: ecr
      #  region: us-west-1
