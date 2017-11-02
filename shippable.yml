@@ -50,7 +50,7 @@ build:
     #- aws configure list
     #- aws iam get-user
     - echo "build dir is-> $SHIPPABLE_BUILD_DIR"
-    #- sudo apt-get install -y tree
+    - sudo apt-get install -y tree
     
     - tree /build
     - tree /tmp
