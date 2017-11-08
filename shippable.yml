@@ -38,8 +38,8 @@ build:
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
     - echo "$HOME"
     - echo "$USER"
-    - npm install
-    #- yarn install
+    #- npm install
+    - yarn install
     - sudo docker -v
     - sudo docker ps -a
     - MY_EB_ENV="test-environment"
