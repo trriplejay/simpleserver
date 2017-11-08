@@ -32,8 +32,8 @@ build:
     #- netstat -tulpn
     #- CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
     #- sleep 5
-    - docker logs --tail=50 $CONTAINER_ID
-    - curl -XGET localhost:8080
+    #- docker logs --tail=50 $CONTAINER_ID
+    #- curl -XGET localhost:8080
     - echo $FAKE_VAR
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
     - echo "$HOME"
