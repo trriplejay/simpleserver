@@ -21,7 +21,14 @@ env:
 
 
 build:
-  pre_ci:
+  #pre_ci_boot:
+  #  image_name: drydock/u16nodall
+  #  image_tag: v5.3.2
+  #  options: "--net=host"
+  #cache: true
+  #cache_dir_list:
+  #  - $SHIPPABLE_BUILD_DIR/node_modules
+  ci:
     - df -h
     - docker images
     - docker rmi drydock/u14pytall:prod drydock/u14pytpls:prod drydock/u14pyt:prod || true
@@ -44,15 +51,7 @@ build:
     - docker rmi shippable/minv2:latest || true
     - docker images
     - df -h
-  #pre_ci_boot:
-  #  image_name: drydock/u16nodall
-  #  image_tag: v5.3.2
-  #  options: "--net=host"
-  #cache: true
-  #cache_dir_list:
-  #  - $SHIPPABLE_BUILD_DIR/node_modules
-  ci:
-    #- netstat -tulpn
+#- netstat -tulpn
     #- CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
     #- sleep 5
     #- docker logs --tail=50 $CONTAINER_ID
