@@ -24,21 +24,24 @@ build:
   pre_ci:
     - df -h
     - docker images
-    - docker rmi drydock/u14ruball:master drydock/u14ruball:v5.10.4 || true
-    - docker rmi drydock/u16ruball:master drydock/u16ruball:v5.10.4 || true
-    - docker rmi drydock/u14scaall:master drydock/u14scaall:v5.10.4 || true
-    - docker rmi drydock/u16scaall:master drydock/u16scaall:v5.10.4 || true
-    - docker rmi drydock/u14javall:master drydock/u14javall:v5.10.4 || true
-    - docker rmi drydock/u16javall:master drydock/u16javall:v5.10.4 || true
-    - docker rmi drydock/u14cppall:master drydock/u14cppall:v5.10.4 drydock/u14cppall:prod || true
-    - docker rmi drydock/u16cppall:master drydock/u16cppall:v5.10.4 || true
-    - docker rmi drydock/u14cloall:master drydock/u14cloall:v5.10.4 || true
-    - docker rmi drydock/u16cloall:master drydock/u16cloall:v5.10.4 || true
-    - docker rmi drydock/u14phpall:master drydock/u14phpall:v5.10.4 || true
-    - docker rmi drydock/u16phpall:master drydock/u16phpall:v5.10.4 || true
-    - docker rmi drydock/u14golall:master drydock/u14golall:v5.10.4 || true
-    - docker rmi drydock/u16golall:master drydock/u16golall:v5.10.4 || true
-    - docker rmi zephyrprojectrtos/ci:v0.1 zephyrprojectrtos/ci:v0.2 || true
+    - docker rmi drydock/u14pytall:prod drydock/u14pytpls:prod drydock/u14pyt:prod || true
+    - docker rmi drydock/u12pytall:prod drydock/u12pytpls:prod drydock/u12pyt:prod || true
+    - docker rmi drydock/u14cloall:prod drydock/u14clopls:prod drydock/u14clo:prod || true
+    - docker rmi drydock/u12cloall:prod drydock/u12clopls:prod drydock/u12clo:prod || true
+    - docker rmi drydock/u14golall:prod drydock/u14golpls:prod drydock/u14gol:prod || true
+    - docker rmi drydock/u12golall:prod drydock/u12golpls:prod drydock/u12gol:prod || true
+    - docker rmi drydock/u14javall:prod drydock/u14javpls:prod drydock/u14jav:prod || true
+    - docker rmi drydock/u12javall:prod drydock/u12javpls:prod drydock/u12jav:prod || true
+    - docker rmi drydock/u14scaall:prod drydock/u14scapls:prod drydock/u14sca:prod || true   
+    - docker rmi drydock/u12scaall:prod drydock/u12scapls:prod drydock/u12sca:prod || true
+    - docker rmi drydock/u14ruball:prod drydock/u14rubpls:prod drydock/u14rub:prod || true
+    - docker rmi drydock/u12ruball:prod drydock/u12rubpls:prod drydock/u12rub:prod || true
+    - docker rmi drydock/u14phpall:prod drydock/u14phppls:prod drydock/u14php:prod || true
+    - docker rmi drydock/u12phpall:prod drydock/u12phppls:prod drydock/u12php:prod || true
+    - docker rmi drydock/u14cpp:prod drydock/u12cpp:prod || true
+    - docker rmi drydock/u12nodall:prod drydock/u12nod:prod drydock/u12nodpls:prod || true
+    - docker rmi drydock/u12all:prod drydock/u12pls:prod drydock/u12:prod || true
+    - docker rmi shippable/minv2:latest || true
     - docker images
     - df -h
   #pre_ci_boot:
