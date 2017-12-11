@@ -59,7 +59,7 @@ build:
     - echo "$HOME"
     - echo "$USER"
     #- npm install
-    - yarn install
+    #- yarn install
     - sudo docker -v
     - sudo docker ps -a
     - MY_EB_ENV="test-environment"
