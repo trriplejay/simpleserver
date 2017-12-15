@@ -51,11 +51,11 @@ build:
     #- aws configure list
     #- aws iam get-user
     - echo "build dir is-> $SHIPPABLE_BUILD_DIR"
-    - sudo apt-get install -y tree
+    #- sudo apt-get install -y tree
     
-    - tree /build
-    - tree /tmp
-    - tree $SHIPPABLE_BUILD_DIR
+    #- tree /build
+    #- tree /tmp
+    #- tree $SHIPPABLE_BUILD_DIR
     - docker ps -a
 
   post_ci:
