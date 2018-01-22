@@ -18,6 +18,7 @@ env:
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
     - MYENV="im from env"
     - CONTAINER_ID=blank
+    - STATE="starting"
 
 
 build:
@@ -81,10 +82,13 @@ build:
     
 
   on_success:
+    - STATE="successful"
     - echo "huzzah!"
+    
     #- docker rm -f $CONTAINER_ID
     
   on_failure:
+    - STATE="failed"
     #- docker rm -f $CONTAINER_ID
 
 integrations:
@@ -106,7 +110,7 @@ integrations:
      #  type: ecr
      #  region: us-west-1
 
-  #notifications:
+  notifications:
   #  - integrationName: irc
   #    type: irc
   #    recipients:
@@ -124,12 +128,13 @@ integrations:
     #   on_success: always
     #   on_failure: never
 
-   # - integrationName: "ci trigger for simple-image int"
-   #   type: webhook
-   #   payload:
-   #     - versionName=integration.$BUILD_NUMBER
-   #   on_success: always
-   #   on_failure: never
+    - integrationName: "test_payload"
+      type: webhook
+      payload:
+        - STATE=$STATE
+      on_success: always
+      on_failure: always
+      on_start: always
 
 
 
