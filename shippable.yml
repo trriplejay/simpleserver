@@ -89,6 +89,7 @@ build:
     - ls
     - cat test.txt
   on_success:
+    - docker ps -a
     - STATE="successful"
     - echo "huzzah!"
     
