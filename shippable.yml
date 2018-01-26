@@ -22,6 +22,9 @@ env:
 
 
 build:
+  pre_ci:
+    - touch test.txt
+    - echo "hello world" > test.txt
   #pre_ci_boot:
   #  image_name: drydock/u16nodall
   #  image_tag: v5.3.2
@@ -80,7 +83,9 @@ build:
     #- pip install --upgrade botocore
     #- docker pull trriplejay/privateimg:latest
     
-
+  push:
+    - ls
+    - cat test.txt
   on_success:
     - STATE="successful"
     - echo "huzzah!"
