@@ -88,6 +88,7 @@ build:
     - cd $SHIPPABLE_BUILD_DIR
     - ls
     - cat test.txt
+    - docker ps -a
   on_success:
     - docker ps -a
     - sleep 2
