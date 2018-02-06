@@ -142,14 +142,18 @@ integrations:
     #     - versionName=$BRANCH.$BUILD_NUMBER
     #   on_success: always
     #   on_failure: never
-
-    - integrationName: "test_payload"
-      type: webhook
-      payload:
-        - state=$STATE
-      on_success: always
-      on_failure: always
-      on_start: always
+    - integrationName: Email
+      type: email
+      recipients:
+        - john@shippable.com
+        - stockbauer@gmail.com
+    #- integrationName: "test_payload"
+    #  type: webhook
+    #  payload:
+    #    - state=$STATE
+    #  on_success: always
+    #  on_failure: always
+    #  on_start: always
 
 
 
