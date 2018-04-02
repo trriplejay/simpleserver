@@ -2,3 +2,4 @@
 
 
 declare -a blah=(${MYENV})
+echo $blah
