@@ -106,7 +106,7 @@ build:
     - STATE="failed"
     #- docker rm -f $CONTAINER_ID
 
-integrations:
+#integrations:
 #   generic:
 #     - integrationName: "my-aws-keys"
 #   hub:
@@ -125,7 +125,7 @@ integrations:
      #  type: ecr
      #  region: us-west-1
 
-  notifications:
+  #notifications:
   #  - integrationName: irc
   #    type: irc
   #    recipients:
@@ -142,11 +142,11 @@ integrations:
     #     - versionName=$BRANCH.$BUILD_NUMBER
     #   on_success: always
     #   on_failure: never
-    - integrationName: Email
-      type: email
-      recipients:
-        - john@shippable.com
-        - stockbauer@gmail.com
+ #   - integrationName: Email
+ #     type: email
+ #     recipients:
+ #       - john@shippable.com
+ #       - stockbauer@gmail.com
     #- integrationName: "test_payload"
     #  type: webhook
     #  payload:
@@ -176,3 +176,26 @@ integrations:
    #   region: "us-west-1"
    #   image_name: "trriplejay/simpleserver"
    #   image_tag: "$BRANCH.$SHIPPABLE_BUILD_NUMBER"
+resources:
+  - name: myRepo-ss
+    type: gitRepo
+    flags:
+      - ss
+    integration: "github"
+    pointer:
+      sourceName: trriplejay/simpleserver
+      branch: master
+      
+jobs:
+  - name: firstJob-ss
+    type: runSh
+    dependencyMode: strict
+    flags:
+      - ss
+    steps:
+      - IN: myRepo-repro
+      - OUT: sample_pipelines_ciRepo
+        replicate: myRepo-repro
+      - TASK:
+          script: echo "hello"
+
