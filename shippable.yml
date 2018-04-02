@@ -193,9 +193,9 @@ jobs:
     flags:
       - ss
     steps:
-      - IN: myRepo-repro
+      - IN: myRepo-ss
       - OUT: simpleserver_ciRepo
-        replicate: myRepo-repro
+        replicate: myRepo-ss
       - TASK:
           script: echo "hello"
 
