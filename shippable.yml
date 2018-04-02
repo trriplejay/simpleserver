@@ -198,5 +198,8 @@ jobs:
       - OUT: simpleserver_ciRepo
         replicate: myRepo-ss
       - TASK:
-          script: echo "hello"
+          script: 
+            - echo "hello"
+            - cd fakedir
+          
 
