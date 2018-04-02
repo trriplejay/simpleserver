@@ -200,6 +200,3 @@ jobs:
       - TASK:
           script: 
             - echo "hello"
-            - cd fakedir
-          
-
