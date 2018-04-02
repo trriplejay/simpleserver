@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-echo "execute FT here..."
+declare -a blah=(${MYENV})
