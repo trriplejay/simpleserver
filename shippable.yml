@@ -26,6 +26,7 @@ build:
     - touch test.txt
     - echo "hello world" > test.txt
     - ls
+    - docker ps -a
   #pre_ci_boot:
   #  image_name: drydock/u16nodall
   #  image_tag: v5.3.2
