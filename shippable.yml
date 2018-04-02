@@ -194,7 +194,7 @@ jobs:
       - ss
     steps:
       - IN: myRepo-repro
-      - OUT: sample_pipelines_ciRepo
+      - OUT: simpleserver_ciRepo
         replicate: myRepo-repro
       - TASK:
           script: echo "hello"
