@@ -5,6 +5,8 @@ branches:
   only:
     - master
 
+runtime:
+  nodePool: c7-dyna
 # Version number
 node_js:
   - 6.11.0
