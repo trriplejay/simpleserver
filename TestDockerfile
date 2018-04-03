@@ -1,2 +1,0 @@
-FROM amazonlinux:latest
-RUN yum install -y iputils
