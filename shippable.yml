@@ -129,13 +129,13 @@ integrations:
      #  region: us-west-1
 
   notifications:
-    - integrationName: test-hook
-      type: webhook
-      payload:
-        - foo=$MYENV
-        - bar=$STATE
-      on_success: always
-      on_failure: always
+   # - integrationName: test-hook
+   #   type: webhook
+   #   payload:
+   #     - foo=$MYENV
+   #     - bar=$STATE
+   #   on_success: always
+   #   on_failure: always
   #  - integrationName: irc
   #    type: irc
   #    recipients:
