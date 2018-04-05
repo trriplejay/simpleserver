@@ -1,13 +1,16 @@
 # Language setting
-language: node_js
+language: php
 
 branches:
   only:
     - master
 
 # Version number
-node_js:
-  - 6.11.0
+php:
+  - 7.0
+  
+services:
+  - mysql
 
 env:
   matrix:
