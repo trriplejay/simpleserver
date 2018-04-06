@@ -104,7 +104,9 @@ build:
     - docker ps -a
     - STATE="successful"
     - echo "huzzah!"
-    - cd fakedir
+    - >
+        echo "hello world"
+        cd fakedir
     
     #- docker rm -f $CONTAINER_ID
     
