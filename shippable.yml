@@ -105,8 +105,9 @@ build:
     - STATE="successful"
     - echo "huzzah!"
     - >
-        echo "hello world"
-        cd fakedir
+      echo "hello world"
+      cd fakedir
+      which python
     
     #- docker rm -f $CONTAINER_ID
     
