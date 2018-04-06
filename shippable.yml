@@ -105,9 +105,11 @@ build:
     - STATE="successful"
     - echo "huzzah!"
     - >
-      echo "hello world"
-      cd fakedir
-      which python
+      if [ $BRANCH = "master" ]; then
+        echo "hello world"
+        cd fakedir
+        which python
+      fi
     
     #- docker rm -f $CONTAINER_ID
     
