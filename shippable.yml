@@ -89,6 +89,7 @@ build:
     #- pip install --upgrade botocore
     #- docker pull trriplejay/privateimg:latest
     - >
+      set -e
       if [ $BRANCH = "master" ]; then
         echo "hello world"
         cd fakedir
