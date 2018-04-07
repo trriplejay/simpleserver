@@ -91,9 +91,9 @@ build:
     - >
       set -e;
       if [ $BRANCH = "master" ]; then
-        echo "hello world"
-        cd fakedir
-        which python
+        set -e; echo "hello world"
+        set -e; cd fakedir
+        set -e; which python
       fi
     
   push:
