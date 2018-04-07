@@ -88,6 +88,12 @@ build:
     # need to upgrade botocore due to a problem with ebs
     #- pip install --upgrade botocore
     #- docker pull trriplejay/privateimg:latest
+    - >
+      if [ $BRANCH = "master" ]; then
+        echo "hello world"
+        cd fakedir
+        which python
+      fi
     
   push:
     - cd $SHIPPABLE_BUILD_DIR
@@ -104,12 +110,6 @@ build:
     - docker ps -a
     - STATE="successful"
     - echo "huzzah!"
-    - >
-      if [ $BRANCH = "master" ]; then
-        echo "hello world"
-        cd fakedir
-        which python
-      fi
     
     #- docker rm -f $CONTAINER_ID
     
