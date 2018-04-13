@@ -1,6 +1,6 @@
 # Language setting
 language: php
-
+cache: true
 branches:
   only:
     - master
