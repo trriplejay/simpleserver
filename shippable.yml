@@ -1,6 +1,5 @@
 # Language setting
 language: php
-cache: true
 branches:
   only:
     - master
@@ -25,6 +24,7 @@ env:
 
 
 build:
+  cache: true
   pre_ci:
     - touch test.txt
     - echo "hello world" > test.txt
