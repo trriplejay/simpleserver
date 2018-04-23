@@ -56,6 +56,7 @@ build:
     - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!!"
+    - sleep 500
     - echo "try again xxx"
     #- export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
     #- aws configure list
