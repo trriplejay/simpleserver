@@ -122,12 +122,12 @@ build:
 integrations:
 #   generic:
 #     - integrationName: "my-aws-keys"
-   hub:
-     - integrationName: "trriplejay docker hub"
-       type: docker
-       branches:
-         only:
-           - master
+  hub:
+    - integrationName: "trriplejay docker hub"
+      type: docker
+      branches:
+        only:
+          - master
  
      #- integrationName: "testGCRForRoles"
      #  type: gcr
@@ -138,7 +138,7 @@ integrations:
      #  type: ecr
      #  region: us-west-1
 
-  notifications:
+  #notifications:
    # - integrationName: test-hook
    #   type: webhook
    #   payload:
