@@ -124,7 +124,7 @@ integrations:
 #     - integrationName: "my-aws-keys"
   hub:
     - integrationName: "trriplejay docker hub"
-      type: docker
+      type: dockerRegistryLogin
       branches:
         only:
           - master
