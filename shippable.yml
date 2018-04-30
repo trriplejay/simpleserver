@@ -10,9 +10,9 @@ env:
 build:
   ci:
     - echo "environment is $environment"
-    - if [ "$environment" == "integration" ] then; sleep 10; fi 
-    - if [ "$environment" == "production" ] then; sleep 20; fi 
-    - if [ "$environment" == "development" ] then; sleep 30; fi 
+    - if [ "$environment" == "integration" ]; then sleep 10; fi 
+    - if [ "$environment" == "production" ]; then sleep 20; fi 
+    - if [ "$environment" == "development" ]; then sleep 30; fi 
 
   on_success:
     - shipctl put_resource_state $JOB_NAME versionName $environment
