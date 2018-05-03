@@ -39,6 +39,8 @@ build:
   #cache_dir_list:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
+    - echo "ami-> $SHIPPABLE_AMI_VERSION"
+    - echo "release-> $SHIPPABLE_RELEASE_VERSION"
     - curl http://169.254.169.254/latest/meta-data/public-ipv4
     - cat runFT.sh | sudo -E bash
 #- netstat -tulpn
