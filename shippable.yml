@@ -1,13 +1,9 @@
 # Language setting
-language: php
+language: none
 branches:
   only:
     - master
 
-# Version number
-php:
-  - "7.0"
-  
 services:
   - mysql
 
