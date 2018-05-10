@@ -124,8 +124,8 @@ build:
     #- docker rm -f $CONTAINER_ID
 
 integrations:
-#   generic:
-#     - integrationName: "my-aws-keys"
+  generic:
+    - integrationName: "my-aws-keys"
   hub:
     - integrationName: "trriplejay docker hub"
       type: dockerRegistryLogin
