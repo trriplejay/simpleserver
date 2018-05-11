@@ -10,6 +10,7 @@ env:
 build:
   ci:
     - echo "environment is $environment"
+    - echo "job number is $JOB_NUMBER"
     - if [ "$environment" == "integration" ]; then sleep 10; fi 
     - if [ "$environment" == "production" ]; then sleep 20; fi 
     - if [ "$environment" == "development" ]; then sleep 30; fi 
