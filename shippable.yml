@@ -26,6 +26,8 @@ integrations:
   notifications:
     - integrationName: email
       type: email
+      recipients:
+        - john@shippable.com
       on_success: always
       on_start: always
       on_failure: always
