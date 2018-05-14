@@ -6,15 +6,28 @@ env:
     - environment=integration
     - environment=production
     - environment=development
+    - environment=fail
 
 build:
   ci:
     - echo "environment is $environment"
     - echo "job number is $JOB_NUMBER"
-    - if [ "$environment" == "integration" ]; then sleep 10; fi 
-    - if [ "$environment" == "production" ]; then sleep 20; fi 
-    - if [ "$environment" == "development" ]; then sleep 30; fi 
+    - if [ "$environment" == "integration" ]; then sleep 2; fi 
+    - if [ "$environment" == "production" ]; then sleep 4; fi 
+    - if [ "$environment" == "development" ]; then sleep 8; fi 
+    - if [ "$environment" == "fail" ]; then cd fakedir; fi 
 
   on_success:
     - shipctl put_resource_state $JOB_NAME versionName $environment
+  on_failure:
+    - echo "Environment **$environment** failed to build"
 
+integrations:                               
+  notifications:
+    - integrationName: email
+      type: email
+      on_success: always
+      on_start: always
+      on_failure: always
+      on_cancel: always
+      on_pull_request: always
