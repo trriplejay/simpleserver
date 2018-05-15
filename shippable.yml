@@ -6,6 +6,7 @@ branches:
 
 services:
   - mysql
+  - elasticsearch
 
 env:
   matrix:
@@ -20,7 +21,6 @@ env:
 
 
 build:
-  cache: true
   pre_ci:
     - touch test.txt
     - echo "hello world" > test.txt
@@ -56,7 +56,7 @@ build:
     - echo "$environment.$SHIPPABLE_BUILD_NUMBER"
     - MYCI="im from ci"
     - MYENV="actually updated in ci!!"
-    - sleep 500
+    #- sleep 500
     - echo "try again xxx"
     #- export AWS_DEFAULT_PROFILE=592719eacc9a750700ad3ec5
     #- aws configure list
