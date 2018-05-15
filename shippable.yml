@@ -1,8 +1,7 @@
 # Language setting
-language: none
-branches:
-  only:
-    - master
+language: ruby
+ruby:
+  - 2.4.3
 
 services:
   - mysql
@@ -18,7 +17,6 @@ env:
     - MYENV="im from env"
     - CONTAINER_ID=blank
     - STATE="starting"
-
 
 build:
   pre_ci:
