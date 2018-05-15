@@ -67,8 +67,8 @@ build:
     #- tree $SHIPPABLE_BUILD_DIR
     - docker ps -a
 
-  post_ci:
-    - echo "post_ci section"
+  #post_ci:
+  #  - echo "post_ci section"
     #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER .
     #- docker build -t trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER --build-arg mytag=$environment.$BUILD_NUMBER .
 
@@ -81,25 +81,25 @@ build:
     #- docker tag trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push $AMAZON_ECR_URL/trriplejaytest:$BRANCH.$BUILD_NUMBER
     #- docker push trriplejay/simpleserver:$BRANCH.$BUILD_NUMBER
-    - MYPOSTCI="im from post_ci"
+    #- MYPOSTCI="im from post_ci"
     #- apt-get update
     #- apt-get install python-dev
     # need to upgrade botocore due to a problem with ebs
     #- pip install --upgrade botocore
     #- docker pull trriplejay/privateimg:latest
-    - >
-      set -e;
-      if [ $BRANCH = "master" ]; then
-        set -e; echo "hello world"
-        set -e; cd fakedir
-        set -e; which python
-      fi
+    #- >
+    #  set -e;
+    #  if [ $BRANCH = "master" ]; then
+    #    set -e; echo "hello world"
+    #    set -e; cd fakedir
+    #    set -e; which python
+    #  fi
     
-  push:
-    - cd $SHIPPABLE_BUILD_DIR
-    - ls
-    - cat test.txt
-    - docker ps -a
+  #push:
+  #  - cd $SHIPPABLE_BUILD_DIR
+  #  - ls
+  #  - cat test.txt
+  #  - docker ps -a
   on_success:
     - docker ps -a
     - sleep 2
