@@ -1,6 +1,6 @@
 # Language setting
 language: ruby
-ruby:
+rvm:
   - 2.4.3
 
 services:
