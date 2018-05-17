@@ -1,11 +1,11 @@
 # Language setting
-language: ruby
-rvm:
-  - 2.4.3
+language: none
+#rvm:
+#  - 2.4.3
 
-services:
-  - mysql
-  - elasticsearch
+#services:
+#  - mysql
+#  - elasticsearch
 
 env:
   matrix:
@@ -136,14 +136,15 @@ integrations:
      #  type: ecr
      #  region: us-west-1
 
-  #notifications:
-   # - integrationName: test-hook
-   #   type: webhook
-   #   payload:
-   #     - foo=$MYENV
-   #     - bar=$STATE
-   #   on_success: always
-   #   on_failure: always
+  notifications:
+    - integrationName: test_payload
+      type: webhook
+      payload:
+        - foo=$MYENV
+        - bar=$STATE
+      on_start: always
+      on_success: always
+      on_failure: always
   #  - integrationName: irc
   #    type: irc
   #    recipients:
