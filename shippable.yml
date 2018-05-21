@@ -108,6 +108,7 @@ build:
     - docker ps -a
     - sleep 2
     - docker ps -a
+    - cd fakedir
     - STATE="successful"
     - echo "huzzah!"
     
