@@ -33,6 +33,8 @@ build:
   #cache_dir_list:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
+    - sudo apt-get update
+    - sudo apt-get install -y hdparm
     - sudo hdparm -Tt /dev/sda
     - echo "ami-> $SHIPPABLE_AMI_VERSION"
     - echo "release-> $SHIPPABLE_RELEASE_VERSION"
@@ -138,15 +140,15 @@ integrations:
      #  type: ecr
      #  region: us-west-1
 
-  notifications:
-    - integrationName: test_payload
-      type: webhook
-      payload:
-        - foo=$MYENV
-        - bar=$STATE
-      on_start: always
-      on_success: always
-      on_failure: always
+#  notifications:
+#    - integrationName: test_payload
+#      type: webhook
+#      payload:
+#        - foo=$MYENV
+#        - bar=$STATE
+#      on_start: always
+#      on_success: always
+#      on_failure: always
   #  - integrationName: irc
   #    type: irc
   #    recipients:
