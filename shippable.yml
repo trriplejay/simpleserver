@@ -1,10 +1,6 @@
 # Language setting
 language: none
 
-#services:
-#  - mysql
-#  - elasticsearch
-
 env:
   matrix:
     #- environment=integration
