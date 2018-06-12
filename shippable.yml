@@ -1,7 +1,5 @@
 # Language setting
 language: none
-#rvm:
-#  - 2.4.3
 
 #services:
 #  - mysql
