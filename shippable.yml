@@ -11,6 +11,7 @@ env:
     - environment=production
   global:
     - TEST=true
+    - MYHOST=$(docker run  -v /etc/hostname:/etc/hostname bash cat /etc/hostname)
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
     - MYENV="im from env"
     - CONTAINER_ID=blank
@@ -31,7 +32,6 @@ build:
   #cache_dir_list:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
-    - MYHOST=$(docker run  -v /etc/hostname:/etc/hostname bash cat /etc/hostname)
     - echo "myhost is $MYHOST"
     - sudo apt-get update
     - sudo apt-get install -y hdparm
