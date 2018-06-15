@@ -31,7 +31,7 @@ build:
   #cache_dir_list:
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
-    - docker run  -v /etc/hostname:/etc/hostname drydock/u16:$SHIPPABLE_AMI_VERSION cat /etc/hostname
+    - docker run  -v /etc/hostname:/etc/hostname bash cat /etc/hostname
     - sudo apt-get update
     - sudo apt-get install -y hdparm
     - sudo hdparm -Tt  /dev/sda # for aws /dev/xvda1, for google /dev/sda
