@@ -130,9 +130,9 @@ integrations:
   #    branches:
   #      only:
   #        - master
-   integrationName: softsrv-iam
-   type: ECR
-   region: us-east-1
+   - integrationName: softsrv-iam
+     type: ECR
+     region: us-east-1
      #- integrationName: "testGCRForRoles"
      #  type: gcr
      #  branches:
