@@ -125,12 +125,14 @@ integrations:
   generic:
     - integrationName: "my-aws-keys"
   hub:
-    - integrationName: "trriplejay docker hub"
-      type: dockerRegistryLogin
-      branches:
-        only:
-          - master
- 
+  #  - integrationName: "trriplejay docker hub"
+  #    type: dockerRegistryLogin
+  #    branches:
+  #      only:
+  #        - master
+   integrationName: softsrv-iam
+   type: ECR
+   region: us-east-1
      #- integrationName: "testGCRForRoles"
      #  type: gcr
      #  branches:
