@@ -132,9 +132,6 @@ integrations:
   #    branches:
   #      only:
   #        - master
-   - integrationName: softsrv-iam
-     type: AWS_IAM
-     region: us-east-1
      #- integrationName: "testGCRForRoles"
      #  type: gcr
      #  branches:
