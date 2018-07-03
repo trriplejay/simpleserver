@@ -30,7 +30,7 @@ build:
   #  options: "--net=host"
   cache: true
   cache_dir_list:
-    - /tmp/cache
+    - /test
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
     - echo "myhost is $MYHOST"
@@ -72,11 +72,11 @@ build:
     #- tree /tmp
     #- tree $SHIPPABLE_BUILD_DIR
     - docker ps -a
-    - mkdir -p /tmp/cache
-    - ls -latr
-    - echo $BUILD_NUMBER >> /tmp/cache/testCache.txt
-    - ls -latr
-    - cat /tmp/cache/testCache.txt
+    - mkdir -p /test
+    - ls -latr /test
+    - echo $BUILD_NUMBER >> /test/testCache.txt
+    - ls -latr /test
+    - cat /test/testCache.txt
 
   #post_ci:
   #  - echo "post_ci section"
