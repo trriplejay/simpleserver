@@ -119,6 +119,7 @@ build:
     - ls -latr
     - echo $BUILD_NUMBER >> testCache.txt
     - ls -latr
+    - cat testCache.txt
     
     #- docker rm -f $CONTAINER_ID
     
