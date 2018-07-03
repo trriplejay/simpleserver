@@ -23,7 +23,7 @@ build:
     - echo "hello world" > test.txt
     - ls
     - docker ps -a
-    - curl http://169.254.169.254/latest/meta-data/public-ipv4
+    #- curl http://169.254.169.254/latest/meta-data/public-ipv4
   #pre_ci_boot:
   #  image_name: drydock/u16nodall
   #  image_tag: v5.3.2
@@ -35,9 +35,9 @@ build:
     - echo "myhost is $MYHOST"
     - echo "build id is $SHIPPABLE_BUILD_ID"
     - echo "job number is $SHIPPABLE_JOB_ID"
-    - sudo apt-get update
-    - sudo apt-get install -y hdparm
-    - sudo hdparm -Tt  /dev/sda # for aws /dev/xvda1, for google /dev/sda
+    #- sudo apt-get update
+    #- sudo apt-get install -y hdparm
+    #- sudo hdparm -Tt  /dev/sda # for aws /dev/xvda1, for google /dev/sda
     - echo "ami-> $SHIPPABLE_AMI_VERSION"
     - echo "release-> $SHIPPABLE_RELEASE_VERSION"
     - curl http://169.254.169.254/latest/meta-data/public-ipv4
