@@ -40,8 +40,8 @@ build:
     #- sudo hdparm -Tt  /dev/sda # for aws /dev/xvda1, for google /dev/sda
     - echo "ami-> $SHIPPABLE_AMI_VERSION"
     - echo "release-> $SHIPPABLE_RELEASE_VERSION"
-    - curl http://169.254.169.254/latest/meta-data/public-ipv4
-    - cat runFT.sh | sudo -E bash
+    #- curl http://169.254.169.254/latest/meta-data/public-ipv4
+    #- cat runFT.sh | sudo -E bash
 #- netstat -tulpn
     #- CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
     #- sleep 5
@@ -116,6 +116,9 @@ build:
     #- cd fakedir
     - STATE="successful"
     - echo "huzzah!"
+    - ls -latr
+    - echo $BUILD_NUMBER >> testCache.txt
+    - ls -latr
     
     #- docker rm -f $CONTAINER_ID
     
@@ -123,10 +126,10 @@ build:
     - STATE="failed"
     #- docker rm -f $CONTAINER_ID
 
-integrations:
-  generic:
-    - integrationName: "my-aws-keys"
-  hub:
+#integrations:
+  #generic:
+  #  - integrationName: "my-aws-keys"
+  #hub:
   #  - integrationName: "trriplejay docker hub"
   #    type: dockerRegistryLogin
   #    branches:
