@@ -71,6 +71,10 @@ build:
     #- tree /tmp
     #- tree $SHIPPABLE_BUILD_DIR
     - docker ps -a
+    - ls -latr
+    - echo $BUILD_NUMBER >> testCache.txt
+    - ls -latr
+    - cat testCache.txt
 
   #post_ci:
   #  - echo "post_ci section"
@@ -116,10 +120,6 @@ build:
     #- cd fakedir
     - STATE="successful"
     - echo "huzzah!"
-    - ls -latr
-    - echo $BUILD_NUMBER >> testCache.txt
-    - ls -latr
-    - cat testCache.txt
     
     #- docker rm -f $CONTAINER_ID
     
