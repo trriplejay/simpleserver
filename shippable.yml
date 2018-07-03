@@ -29,7 +29,8 @@ build:
   #  image_tag: v5.3.2
   #  options: "--net=host"
   cache: true
-  #cache_dir_list:
+  cache_dir_list:
+    - /tmp/cache
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
     - echo "myhost is $MYHOST"
@@ -71,10 +72,11 @@ build:
     #- tree /tmp
     #- tree $SHIPPABLE_BUILD_DIR
     - docker ps -a
+    - mkdir -p /tmp/cache
     - ls -latr
-    - echo $BUILD_NUMBER >> testCache.txt
+    - echo $BUILD_NUMBER >> /tmp/cache/testCache.txt
     - ls -latr
-    - cat testCache.txt
+    - cat /tmp/cache/testCache.txt
 
   #post_ci:
   #  - echo "post_ci section"
