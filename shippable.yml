@@ -29,14 +29,14 @@ integrations:
       type: hub
 
 jobs:
-  # - name: afterJob
-  #   type: runSh
-  #   steps:
-  #     - IN: firstImage
-  #     - TASK:
-  #         script:
-  #           - sleep 5
-  #           - echo "all done"
+  - name: afterJob
+    type: runSh
+    steps:
+      - IN: firstImage
+      - TASK:
+          script:
+            - sleep 5
+            - echo "all done"
   - name: simpleserver_runCI
     type: runCI
     steps:
