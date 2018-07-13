@@ -20,6 +20,7 @@ build:
   on_success:
     - echo "push image with tag **$environment** here"
     - shipctl put_resource_state firstImage versionName $environment
+    - shipctl put_resource_state firstImage BUILD_NUMBER $BUILD_NUMBER
   on_failure:
     - echo "Environment **$environment** failed to build"
 
