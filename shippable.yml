@@ -1,35 +1,61 @@
 # Language setting
-language: none 
+language: none
 
 env:
   matrix:
     - environment=integration
     - environment=production
     - environment=development
-    - environment=fail
+    #- environment=fail
 
 build:
   ci:
     - echo "environment is $environment"
     - echo "job number is $JOB_NUMBER"
-    - if [ "$environment" == "integration" ]; then sleep 2; fi 
-    - if [ "$environment" == "production" ]; then sleep 4; fi 
-    - if [ "$environment" == "development" ]; then sleep 8; fi 
-    - if [ "$environment" == "fail" ]; then cd fakedir; fi 
+    - if [ "$environment" == "integration" ]; then sleep 2; fi
+    - if [ "$environment" == "production" ]; then sleep 4; fi
+    - if [ "$environment" == "development" ]; then sleep 8; fi
+    #- if [ "$environment" == "fail" ]; then cd fakedir; fi
 
   on_success:
-    - shipctl put_resource_state $JOB_NAME versionName $environment
+    - echo "push image with tag **$environment** here"
+    - shipctl put_resource_state firstImage versionName $environment
   on_failure:
     - echo "Environment **$environment** failed to build"
 
-integrations:                               
-  notifications:
-    - integrationName: email
-      type: email
-      recipients:
-        - john@shippable.com
-      on_success: always
-      on_start: always
-      on_failure: always
-      on_cancel: always
-      on_pull_request: always
+integrations:
+  hub:
+    - integrationName: "trriplejay docker hub"
+      type: hub
+
+jobs:
+  - name: afterJob
+    type: release
+    steps:
+      - TASK:
+          script:
+            - sleep 5
+            - echo "all done"
+  - name: simpleserver_runCI
+    type: runCI
+    steps:
+      - OUT: firstImage
+
+resources:
+  - name: firstImage
+    type: image
+    versionTemplate:
+      sourceName: trriplejay/simpleserver
+      versionName: setup1
+
+- name: secondImage
+    type: image
+    versionTemplate:
+      sourceName: trriplejay/simpleserver
+      versionName: setup2
+
+- name: thirdImage
+    type: image
+    versionTemplate:
+      sourceName: trriplejay/simpleserver
+      versionName: setup3
