@@ -55,8 +55,6 @@ jobs:
     type: runCI
     steps:
       - OUT: firstImage
-      - OUT: secondImage
-      - OUT: thirdImage
 
 resources:
   - name: firstImage
