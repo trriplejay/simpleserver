@@ -23,10 +23,6 @@ build:
   on_failure:
     - echo "Environment **$environment** failed to build"
 
-integrations:
-  hub:
-    - integrationName: "trriplejay docker hub"
-      type: hub
 
 jobs:
   - name: afterJob
