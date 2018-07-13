@@ -48,13 +48,13 @@ resources:
       sourceName: trriplejay/simpleserver
       versionName: setup1
 
-- name: secondImage
+  - name: secondImage
     type: image
     versionTemplate:
       sourceName: trriplejay/simpleserver
       versionName: setup2
 
-- name: thirdImage
+  - name: thirdImage
     type: image
     versionTemplate:
       sourceName: trriplejay/simpleserver
