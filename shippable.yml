@@ -19,21 +19,21 @@ build:
 
   on_success:
     - echo "push image with tag **$environment** here"
-    - |
-      if [ "$environment" == "integration" ]; then
-        shipctl put_resource_state firstImage versionName $environment
-        shipctl put_resource_state firstImage BUILD_NUMBER $BUILD_NUMBER
-      fi
-    - |
-      if [ "$environment" == "development" ]; then
-        shipctl put_resource_state secondImage versionName $environment
-        shipctl put_resource_state secondImage BUILD_NUMBER $BUILD_NUMBER
-      fi
-    - |
-      if [ "$environment" == "production" ]; then
-        shipctl put_resource_state thirdImage versionName $environment
-        shipctl put_resource_state thirdImage BUILD_NUMBER $BUILD_NUMBER
-      fi
+    # - |
+    #   if [ "$environment" == "integration" ]; then
+    #     shipctl put_resource_state firstImage versionName $environment
+    #     shipctl put_resource_state firstImage BUILD_NUMBER $BUILD_NUMBER
+    #   fi
+    # - |
+    #   if [ "$environment" == "development" ]; then
+    #     shipctl put_resource_state secondImage versionName $environment
+    #     shipctl put_resource_state secondImage BUILD_NUMBER $BUILD_NUMBER
+    #   fi
+    # - |
+    #   if [ "$environment" == "production" ]; then
+    #     shipctl put_resource_state thirdImage versionName $environment
+    #     shipctl put_resource_state thirdImage BUILD_NUMBER $BUILD_NUMBER
+    #   fi
 
   on_failure:
     - echo "Environment **$environment** failed to build"
