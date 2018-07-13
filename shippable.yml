@@ -32,6 +32,7 @@ jobs:
   - name: afterJob
     type: release
     steps:
+      - IN: firstImage
       - TASK:
           script:
             - sleep 5
