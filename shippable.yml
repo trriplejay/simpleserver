@@ -28,12 +28,11 @@ build:
       if [ "$environment" == "development" ]; then
         shipctl put_resource_state secondImage versionName $environment
         shipctl put_resource_state secondImage BUILD_NUMBER $BUILD_NUMBER
-        shipctl put_resource_state thirdImage versionName $environment
-        shipctl put_resource_state thirdImage BUILD_NUMBER $BUILD_NUMBER
       fi
     - |
       if [ "$environment" == "production" ]; then
-        echo "nothing to see here"
+        shipctl put_resource_state thirdImage versionName $environment
+        shipctl put_resource_state thirdImage BUILD_NUMBER $BUILD_NUMBER
       fi
 
   on_failure:
@@ -45,25 +44,27 @@ jobs:
     type: runSh
     steps:
       - IN: firstImage
-      - TASK:
-          script:
-            - echo "all done"
-
-  - name: afterJob2
-    type: runSh
-    steps:
       - IN: secondImage
-      - TASK:
-          script:
-            - echo "all done"
-
-  - name: afterJob3
-    type: runSh
-    steps:
       - IN: thirdImage
       - TASK:
           script:
             - echo "all done"
+
+  # - name: afterJob2
+  #   type: runSh
+  #   steps:
+  #     - IN: secondImage
+  #     - TASK:
+  #         script:
+  #           - echo "all done"
+
+  # - name: afterJob3
+  #   type: runSh
+  #   steps:
+  #     - IN: thirdImage
+  #     - TASK:
+  #         script:
+  #           - echo "all done"
 
   - name: simpleserver_runCI
     type: runCI
