@@ -28,11 +28,12 @@ build:
       if [ "$environment" == "development" ]; then
         shipctl put_resource_state secondImage versionName $environment
         shipctl put_resource_state secondImage BUILD_NUMBER $BUILD_NUMBER
+        shipctl put_resource_state thirdImage versionName $environment
+        shipctl put_resource_state thirdImage BUILD_NUMBER $BUILD_NUMBER
       fi
     - |
       if [ "$environment" == "production" ]; then
-        shipctl put_resource_state thirdImage versionName $environment
-        shipctl put_resource_state thirdImage BUILD_NUMBER $BUILD_NUMBER
+        echo "nothing to see here"
       fi
 
   on_failure:
