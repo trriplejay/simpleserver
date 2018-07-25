@@ -148,8 +148,8 @@ integrations:
      #  region: us-west-1
 
   notifications:
-    - integrationName: imperialchat
-      type: slack
+    - integrationName: test_slack
+      type: slackKey
       recipients:
         - "@trriplejay"
       on_success: always
