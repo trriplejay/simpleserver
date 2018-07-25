@@ -147,7 +147,11 @@ build:
      #  type: ecr
      #  region: us-west-1
 
-#  notifications:
+  notifications:
+    - integrationName: imperialchat
+      type: slack
+      recipients:
+        - "@trriplejay"
 #    - integrationName: test_payload
 #      type: webhook
 #      payload:
