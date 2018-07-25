@@ -152,6 +152,7 @@ integrations:
       type: slack
       recipients:
         - "@trriplejay"
+      on_success: always
 #    - integrationName: test_payload
 #      type: webhook
 #      payload:
