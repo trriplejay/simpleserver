@@ -129,7 +129,7 @@ build:
     - STATE="failed"
     #- docker rm -f $CONTAINER_ID
 
-#integrations:
+integrations:
   #generic:
   #  - integrationName: "my-aws-keys"
   #hub:
