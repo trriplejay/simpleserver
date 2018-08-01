@@ -148,19 +148,19 @@ integrations:
      #  region: us-west-1
 
   notifications:
-    - integrationName: test_slack
-      type: slackKey
-      recipients:
-        - "@trriplejay"
-      on_success: always
-#    - integrationName: test_payload
-#      type: webhook
-#      payload:
-#        - foo=$MYENV
-#        - bar=$STATE
-#      on_start: always
+#    - integrationName: test_slack
+#      type: slackKey
+#      recipients:
+#        - "@trriplejay"
 #      on_success: always
-#      on_failure: always
+    - integrationName: testGenericHook
+      type: webhook
+      payload:
+        - foo=$MYENV
+        - bar=$STATE
+      on_start: always
+      on_success: always
+      on_failure: always
   #  - integrationName: irc
   #    type: irc
   #    recipients:
