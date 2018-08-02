@@ -148,11 +148,12 @@ integrations:
      #  region: us-west-1
 
   notifications:
-#    - integrationName: test_slack
-#      type: slackKey
-#      recipients:
-#        - "@trriplejay"
-#      on_success: always
+    - integrationName: testFakeSlack
+      type: slackKey
+      recipients:
+        - "@trriplejay"
+      on_success: always
+      on_failure: always
     - integrationName: testGenericHook
       type: webhook
       payload:
