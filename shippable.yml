@@ -65,7 +65,7 @@ integrations:
 
 
 resources:
-  - name: mySlack
+  - name: mySlackNotifier
     type: notification
     integration: imperialchat
     versionTemplate:
@@ -94,6 +94,6 @@ jobs:
   - name: simpleserver_runCI
     type: runCI
     steps:
-      - IN: mySlack
+      - IN: mySlackNotifier
       - IN: myIRC
       - IN: myWebhookPayload
