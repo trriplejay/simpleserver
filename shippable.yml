@@ -10,6 +10,8 @@ build:
   ci:
     #- reqProcID=$(docker ps -q --filter name=reqProc)
     #- docker commit $reqProcID trriplejay/shipctlenv:latest
+    - ls /build
+    - tree /build
     - docker build -t trriplejay/shipctlenv:latest -f TempDockerfile .
     - docker push trriplejay/shipctlenv:latest
   post_ci:
