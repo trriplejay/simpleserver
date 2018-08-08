@@ -8,8 +8,9 @@ node_js:
 build:
 
   ci:
-    - reqProcID=$(docker ps -q --filter name=reqProc)
-    - docker commit $reqProcID trriplejay/shipctlenv:latest
+    #- reqProcID=$(docker ps -q --filter name=reqProc)
+    #- docker commit $reqProcID trriplejay/shipctlenv:latest
+    - docker build trriplejay/shipctlenv:latest -f TempDockerfile
     - docker push trriplejay/shipctlenv:latest
   post_ci:
     - echo "post_ci section"
