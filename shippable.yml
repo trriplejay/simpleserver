@@ -85,6 +85,9 @@ resources:
   - name: myWebhookPayload
     type: notification
     integration: testGenericHook
+    versionTemplate:
+      recipients:
+        - "hmmm"
 
 
 jobs:
