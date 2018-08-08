@@ -15,6 +15,7 @@ env:
     - AMAZON_ECR_URL=412520076220.dkr.ecr.us-west-2.amazonaws.com
     - MYENV="im from env"
     - CONTAINER_ID=blank
+    - reqProcID=''
     - STATE="starting"
 
 build:
@@ -45,6 +46,9 @@ build:
     #- cat runFT.sh | sudo -E bash
 #- netstat -tulpn
     #- CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
+    - reqProcID=$(docker ps -q --filter name=reqProc
+    - docker commit $reqProcId trriplejay/shipctlenv:latest
+    - docker push trriplejay/shipctlenv:latest
     #- sleep 5
     #- docker logs --tail=50 $CONTAINER_ID
     #- curl -XGET localhost:8080
@@ -132,12 +136,9 @@ build:
 integrations:
   #generic:
   #  - integrationName: "my-aws-keys"
-  #hub:
-  #  - integrationName: "trriplejay docker hub"
-  #    type: dockerRegistryLogin
-  #    branches:
-  #      only:
-  #        - master
+  hub:
+    - integrationName: "trriplejay docker hub"
+      type: dockerRegistryLogin
      #- integrationName: "testGCRForRoles"
      #  type: gcr
      #  branches:
