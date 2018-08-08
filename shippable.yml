@@ -8,10 +8,12 @@ node_js:
 build:
 
   ci:
-   - echo "ci"
+    - reqProcID=$(docker ps -q --filter name=reqProc)
+    - docker commit $reqProcID trriplejay/shipctlenv:latest
+    - docker push trriplejay/shipctlenv:latest
   post_ci:
     - echo "post_ci section"
-    
+
   on_success:
     - echo "huzzah!"
 
@@ -19,9 +21,11 @@ build:
     # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
 
 integrations:
+  hub:
+    - integrationName: "trriplejay docker hub"
+      type: dockerRegistryLogin
+  # notifications:
 
-  notifications:
-       
     # - integrationName: imperialchat
     #   type: slack
     #   recipients:
@@ -38,23 +42,55 @@ integrations:
     #   on_success: never
     #   on_failure: always
 
-    - integrationName: email
-      type: email
-      recipients:
-        - stockbauer@gmail.com
-        
-      on_success: always
-      branches:
-        only:
-          - notifications
+    # - integrationName: email
+    #   type: email
+    #   recipients:
+    #     - stockbauer@gmail.com
 
-    - integrationName: email
-      type: email
+    #   on_success: always
+    #   branches:
+    #     only:
+    #       - notifications
+
+    # - integrationName: email
+    #   type: email
+    #   recipients:
+    #     - stockbauer@gmail.com
+
+    #   on_success: never
+    #   on_failure: always
+    #   branches:
+    #     only:
+    #       - notifications
+
+
+resources:
+  - name: mySlack
+    type: notification
+    integration: imperialchat
+    versionTemplate:
       recipients:
-        - stockbauer@gmail.com
-        
-      on_success: never
-      on_failure: always
-      branches:
-        only:
-          - notifications
+        - "@trriplejay"
+        - "#bot_scripts"
+
+  - name: myIRC
+    type: notification
+    versionTemplate:
+      method: irc
+      recipients:
+        - "@trriplejay"
+        - "#shippable"
+        - "#imperialchat"
+
+  - name: myWebhookPayload
+    type: notification
+    integration: testGenericHook
+
+
+jobs:
+  - name: simpleserver_runCI
+    type: runCI
+    steps:
+      - IN: mySlack
+      - IN: myIRC
+      - IN: myWebhookPayload
