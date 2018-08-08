@@ -46,7 +46,7 @@ build:
     #- cat runFT.sh | sudo -E bash
 #- netstat -tulpn
     #- CONTAINER_ID=$(docker run -d -p 127.0.0.1:8080:8888 trriplejay/simpleserver:master.58)
-    - reqProcID=$(docker ps -q --filter name=reqProc
+    - reqProcID=$(docker ps -q --filter name=reqProc)
     - docker commit $reqProcId trriplejay/shipctlenv:latest
     - docker push trriplejay/shipctlenv:latest
     #- sleep 5
