@@ -33,9 +33,11 @@ build:
 
     - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
     - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
+    - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
     - shipctl notify mySlackNotifier || true # no payload check
     - shipctl notify badResource || true # no resource check
     - shipctl notify myIRC || true # not integration check
+    - shipctl notify myDummyImage || true # not a notification resource check
   post_ci:
     - echo "post_ci section"
 
@@ -90,6 +92,12 @@ integrations:
 
 
 resources:
+  - name: myDummyImage
+    type: image
+    versionTemplate:
+      sourceName: trriplejay/simpleserver
+      versionName: master.58
+
   - name: mySlackNotifier
     type: notification
     integration: imperialchat
@@ -122,3 +130,4 @@ jobs:
       - IN: mySlackNotifier
       - IN: myIRC
       - IN: myWebhookPayload
+      - IN: myDummyImage
