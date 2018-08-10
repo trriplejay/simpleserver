@@ -32,7 +32,7 @@ build:
 
     - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
     - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
-    - shipctl notify mySlackNotifer || true # no payload check
+    - shipctl notify mySlackNotifier || true # no payload check
     - shipctl notify badResource || true # no resource check
     - shipctl notify myIRC || true # not integration check
   post_ci:
