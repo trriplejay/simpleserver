@@ -135,3 +135,39 @@ jobs:
       - IN: myIRC
       - IN: myWebhookPayload
       - IN: myDummyImage
+
+  - name: simpleserver_runSh
+    type: runSh
+    steps:
+      - IN: mySlackNotifier
+      - IN: myIRC
+      - IN: myWebhookPayload
+      - IN: myDummyImage
+      - TASK:
+          script:
+            - echo "hello there"
+            # test stuff
+            - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
+            - printenv
+
+            #set up payloads
+            - pretext=`date`
+            - text="Job $JOB_NAME build number $BUILD_NUMBER"
+            - slack_payload="{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
+            - echo "$slack_payload" > slack_payload.json
+            - cat `pwd`/slack_payload.json
+            - hook_payload="{\"hello\":\"world\"}"
+            - echo "$hook_payload" > hook_payload.json
+            - cat `pwd`/hook_payload.json
+            - jq type `pwd`/hook_payload.json
+            - curl --version
+
+            # send notifications
+
+            - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
+            - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
+            - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
+            - shipctl notify mySlackNotifier || true # no payload check
+            - shipctl notify badResource || true # no resource check
+            - shipctl notify myIRC || true # not integration check
+            - shipctl notify myDummyImage || true # not a notification resource check
