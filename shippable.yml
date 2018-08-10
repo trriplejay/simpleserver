@@ -18,12 +18,15 @@ build:
     # - docker push trriplejay/shipctlenv:latest
     - pretext=`date`
     - text="Job $JOB_NAME build number $BUILD_NUMBER"
-    - slack_payload="{\"username\":\"${opt_username}\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\",\"channel\":\"@trriplejay\"}"
+    - slack_payload="{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"],\"channel\":\"@trriplejay\"}"
     - echo "$slack_payload" > payload.json
-    - cat payload.json
+    - cat `pwd`/payload.json
+    - jq type `pwd`/payload.json
     - shipctl notify mySlackNotifier --payload=`pwd`/payload.json
     - hook_payload="{\"hello\":\"world\"}"
     - echo "$hook_payload" > payload.json
+    - cat `pwd`/payload.json
+    - jq type `pwd`/payload.json
     - shipctl notify myWebhookPayload --payload=`pwd`/payload.json
   post_ci:
     - echo "post_ci section"
