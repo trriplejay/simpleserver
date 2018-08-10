@@ -16,7 +16,7 @@ build:
     # - cp -r /build .
     # - docker build -t trriplejay/shipctlenv:latest -f TempDockerfile .
     # - docker push trriplejay/shipctlenv:latest
-    pretext=`date`
+    - pretext=`date`
     - text="Job $JOB_NAME build number $BUILD_NUMBER"
     - slack_payload="{\"username\":\"${opt_username}\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\",\"channel\":\"@trriplejay\"}"
     - echo "$slack_payload" > payload.json
