@@ -27,6 +27,7 @@ build:
     - echo "$hook_payload" > hook_payload.json
     - cat `pwd`/hook_payload.json
     - jq type `pwd`/hook_payload.json
+    - curl --version
 
     # send notifications
 
