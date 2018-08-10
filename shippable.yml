@@ -8,14 +8,22 @@ node_js:
 build:
 
   ci:
-    #- reqProcID=$(docker ps -q --filter name=reqProc)
-    #- docker commit $reqProcID trriplejay/shipctlenv:latest
-    - ls /build
-    - sudo apt-get install -y tree
-    - tree /build
-    - cp -r /build .
-    - docker build -t trriplejay/shipctlenv:latest -f TempDockerfile .
-    - docker push trriplejay/shipctlenv:latest
+    # - reqProcID=$(docker ps -q --filter name=reqProc)
+    # - docker commit $reqProcID trriplejay/shipctlenv:latest
+    # - ls /build
+    # - sudo apt-get install -y tree
+    # - tree /build
+    # - cp -r /build .
+    # - docker build -t trriplejay/shipctlenv:latest -f TempDockerfile .
+    # - docker push trriplejay/shipctlenv:latest
+    pretext=`date`
+    - text="Job $JOB_NAME build number $BUILD_NUMBER"
+    - slack_payload="{\"username\":\"${opt_username}\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\",\"channel\":\"@trriplejay\"}"
+    - echo "$slack_payload" > payload.json
+    - shipctl notify mySlackNotifier --payload=`pwd`/payload.json
+    - hook_payload="{\"hello\":\"world\"}"
+    - echo "$hook_payload" > payload.json
+    - shipctl notify myWebhookPayload --payload=`pwd`/payload.json
   post_ci:
     - echo "post_ci section"
 
