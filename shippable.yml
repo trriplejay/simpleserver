@@ -17,6 +17,10 @@ build:
     # - docker build -t trriplejay/shipctlenv:latest -f TempDockerfile .
     # - docker push trriplejay/shipctlenv:latest
 
+    # test stuff
+    - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
+    - printenv
+
     #set up payloads
     - pretext=`date`
     - text="Job $JOB_NAME build number $BUILD_NUMBER"
