@@ -16,18 +16,25 @@ build:
     # - cp -r /build .
     # - docker build -t trriplejay/shipctlenv:latest -f TempDockerfile .
     # - docker push trriplejay/shipctlenv:latest
+
+    #set up payloads
     - pretext=`date`
     - text="Job $JOB_NAME build number $BUILD_NUMBER"
     - slack_payload="{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
-    - echo "$slack_payload" > payload.json
-    - cat `pwd`/payload.json
-    - jq type `pwd`/payload.json
-    - shipctl notify mySlackNotifier --payload=`pwd`/payload.json
+    - echo "$slack_payload" > slack_payload.json
+    - cat `pwd`/slack_payload.json
     - hook_payload="{\"hello\":\"world\"}"
-    - echo "$hook_payload" > payload.json
-    - cat `pwd`/payload.json
-    - jq type `pwd`/payload.json
-    - shipctl notify myWebhookPayload --payload=`pwd`/payload.json
+    - echo "$hook_payload" > hook_payload.json
+    - cat `pwd`/hook_payload.json
+    - jq type `pwd`/hook_payload.json
+
+    # send notifications
+
+    - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
+    - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
+    - shipctl notify mySlackNotifer || true # no payload check
+    - shipctl notify badResource || true # no resource check
+    - shipctl notify myIRC || true # not integration check
   post_ci:
     - echo "post_ci section"
 
