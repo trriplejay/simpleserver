@@ -6,7 +6,7 @@ env:
     - environment=integration
     - environment=production
     - environment=development
-    #- environment=fail
+    - environment=fail
 
 build:
   ci:
@@ -15,7 +15,7 @@ build:
     - if [ "$environment" == "integration" ]; then sleep 2; fi
     - if [ "$environment" == "production" ]; then sleep 4; fi
     - if [ "$environment" == "development" ]; then sleep 8; fi
-    #- if [ "$environment" == "fail" ]; then cd fakedir; fi
+    - if [ "$environment" == "fail" ]; then cd fakedir; fi
 
   on_success:
     - echo "push image with tag **$environment** here"
