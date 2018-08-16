@@ -21,6 +21,6 @@ build:
     - result=$(($RANDOM % 20))
     - echo "item is $item"
     - echo "rolled a $result"
-    - cp coverageResults/coverage.xml /shippable/codecoverage/coverage.xml
+    - cp coverageResults/coverage.xml shippable/codecoverage/coverage.xml
     - if [ "$result" -gt 5 ]; then cp testResults/junit.xml shippable/testresults/junit.xml; fi
     - if [ "$result" -lt 6 ]; then cp testResults/nosetests.xml shippable/testresults/nosetests.xml; fi
