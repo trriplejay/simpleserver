@@ -5,169 +5,20 @@ language: node_js
 node_js:
   - 6.11.0
 
+env:
+  - item=1
+  - item=2
+  - item=3
+  - item=4
+  - item=5
+  - item=6
+  - item=7
+  - item=8
+
 build:
 
   ci:
-    # - reqProcID=$(docker ps -q --filter name=reqProc)
-    # - docker commit $reqProcID trriplejay/shipctlenv:latest
-    # - ls /build
-    # - sudo apt-get install -y tree
-    # - tree /build
-    # - cp -r /build .
-    # - docker build -t trriplejay/shipctlenv:latest -f TempDockerfile .
-    # - docker push trriplejay/shipctlenv:latest
-
-    # test stuff
-    - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
-    - printenv
-
-    #set up payloads
-    - pretext=`date`
-    - text="Job $JOB_NAME build number $BUILD_NUMBER"
-    - slack_payload="{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
-    - echo "$slack_payload" > slack_payload.json
-    - cat `pwd`/slack_payload.json
-    - hook_payload="{\"hello\":\"world\"}"
-    - echo "$hook_payload" > hook_payload.json
-    - cat `pwd`/hook_payload.json
-    - jq type `pwd`/hook_payload.json
-    - curl --version
-
-    # send notifications
-
-    - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
-    - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
-    - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
-    - shipctl notify mySlackNotifier || true # no payload check
-    - shipctl notify badResource || true # no resource check
-    - shipctl notify myIRC || true # not integration check
-    - shipctl notify myDummyImage || true # not a notification resource check
-  post_ci:
-    - echo "post_ci section"
-
-  on_success:
-    - echo "huzzah!"
-
-  push:
-    # - docker push gcr.io/sample-gke/simpleserver:$environment.$BUILD_NUMBER
-
-integrations:
-  hub:
-    - integrationName: "trriplejay docker hub"
-      type: dockerRegistryLogin
-  # notifications:
-
-    # - integrationName: imperialchat
-    #   type: slack
-    #   recipients:
-    #     - "@trriplejay"
-    #     - "#bot_scripts"
-    #   on_success: always
-    #   on_failure: never
-
-    # - integrationName: "imperialchat failure"
-    #   type: slack
-    #   recipients:
-    #     - "@trriplejay"
-    #     - "#bot_scripts"
-    #   on_success: never
-    #   on_failure: always
-
-    # - integrationName: email
-    #   type: email
-    #   recipients:
-    #     - stockbauer@gmail.com
-
-    #   on_success: always
-    #   branches:
-    #     only:
-    #       - notifications
-
-    # - integrationName: email
-    #   type: email
-    #   recipients:
-    #     - stockbauer@gmail.com
-
-    #   on_success: never
-    #   on_failure: always
-    #   branches:
-    #     only:
-    #       - notifications
-
-
-resources:
-  - name: myDummyImage
-    type: image
-    versionTemplate:
-      sourceName: trriplejay/simpleserver
-      versionName: master.58
-
-  - name: mySlackNotifier
-    type: notification
-    integration: imperialchat
-    versionTemplate:
-      recipients:
-        - "@trriplejay"
-        - "#bot_scripts"
-
-  - name: myIRC
-    type: notification
-    versionTemplate:
-      method: irc
-      recipients:
-        - "@trriplejay"
-        - "#shippable"
-        - "#imperialchat"
-
-  - name: myWebhookPayload
-    type: notification
-    integration: testGenericHook
-    versionTemplate:
-      recipients:
-        - "hmmm"
-
-
-jobs:
-  - name: simpleserver_runCI
-    type: runCI
-    steps:
-      - IN: mySlackNotifier
-      - IN: myIRC
-      - IN: myWebhookPayload
-      - IN: myDummyImage
-
-  - name: simpleserver_runSh
-    type: runSh
-    steps:
-      - IN: mySlackNotifier
-      - IN: myIRC
-      - IN: myWebhookPayload
-      - IN: myDummyImage
-      - TASK:
-          script:
-            - echo "hello there"
-            # test stuff
-            - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
-            - printenv
-
-            #set up payloads
-            - pretext=`date`
-            - text="Job $JOB_NAME build number $BUILD_NUMBER"
-            - slack_payload="{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
-            - echo "$slack_payload" > slack_payload.json
-            - cat `pwd`/slack_payload.json
-            - hook_payload="{\"hello\":\"world\"}"
-            - echo "$hook_payload" > hook_payload.json
-            - cat `pwd`/hook_payload.json
-            - jq type `pwd`/hook_payload.json
-            - curl --version
-
-            # send notifications
-
-            - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
-            - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
-            - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
-            - shipctl notify mySlackNotifier || true # no payload check
-            - shipctl notify badResource || true # no resource check
-            - shipctl notify myIRC || true # not integration check
-            - shipctl notify myDummyImage || true # not a notification resource check
+    - result=$(($RANDOM % 20))
+    - echo "item is $item"
+    - echo "rolled a $result"
+    - if [ $result -lt 3 ]; then cd fakedir; fi
