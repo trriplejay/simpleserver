@@ -21,5 +21,4 @@ build:
     - result=$(($RANDOM % 20))
     - echo "item is $item"
     - echo "rolled a $result"
-    - cp -r testResults/* shippable/testresults
-    - if [ "$result" -gt 5 ]; then cd fakedir; fi
+    - if [ "$result" -gt 5 ]; then cp -r testResults/* shippable/testresults; fi
