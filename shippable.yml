@@ -21,4 +21,4 @@ build:
     - result=$(($RANDOM % 20))
     - echo "item is $item"
     - echo "rolled a $result"
-    - if [ $result -lt 3 ]; then cd fakedir; fi
+    - if [ "$result" -gt 2 ]; then cd fakedir; fi
