@@ -23,6 +23,6 @@ build:
     - echo "rolled a $result"
     - cp coverageResults/coverage.xml shippable/codecoverage/coverage.xml
     - mkdir -p shippable/codecoverage/target/site/jacoco
-    - wget -O shippable/codecoverage/target/site/jacoco/jacococoverage.xml https://gist.githubusercontent.com/trriplejay/3736ca5699e4b957e0e1f462217f586f/raw/673edded579aef228d7c3c3dc40783452d17bc04/jacoco.xml
+    - wget -O shippable/codecoverage/target/site/jacoco/jacoco.xml https://gist.githubusercontent.com/trriplejay/3736ca5699e4b957e0e1f462217f586f/raw/7927e2558e21b15e612976539a954bfa26ca35ec/advancedCoverage.xml
     - if [ "$result" -gt 5 ]; then cp testResults/junit.xml shippable/testresults/junit.xml; fi
     - if [ "$result" -lt 6 ]; then cp testResults/nosetests.xml shippable/testresults/nosetests.xml; fi
