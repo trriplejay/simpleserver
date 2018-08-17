@@ -26,3 +26,19 @@ build:
     - wget -O shippable/codecoverage/target/site/jacoco/jacoco.xml https://gist.githubusercontent.com/trriplejay/3736ca5699e4b957e0e1f462217f586f/raw/7927e2558e21b15e612976539a954bfa26ca35ec/advancedCoverage.xml
     - if [ "$result" -gt 5 ]; then cp testResults/junit.xml shippable/testresults/junit.xml; fi
     - if [ "$result" -lt 6 ]; then cp testResults/nosetests.xml shippable/testresults/nosetests.xml; fi
+
+
+integrations:
+  notifications:
+    - integrationName: email
+      type: email
+      sendConsoleLogs: true
+      sendCoverageReports: true
+      sendFailingSnippet: true
+      recipients:
+        - john@shippable.com
+      on_success: always
+      on_failure: always
+      on_cancel: always
+      on_start: always
+      on_pull_request: always
