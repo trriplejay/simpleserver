@@ -27,21 +27,45 @@ build:
     - slack_payload="{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
     - echo "$slack_payload" > slack_payload.json
     - cat `pwd`/slack_payload.json
+    - bad_slack_payload="{\"hello\":\"world\"}"
+    - echo "$bad_slack_payload" > bad_slack_payload.json
+    - cat `pwd`/bad_slack_payload.json
     - hook_payload="{\"hello\":\"world\"}"
     - echo "$hook_payload" > hook_payload.json
     - cat `pwd`/hook_payload.json
     - jq type `pwd`/hook_payload.json
     - curl --version
 
-    # send notifications
+    # send notifications with --payload
 
     - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
     - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
     - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
+    - shipctl notify mySlackNotifier --payload=`pwd`/bad_slack_payload.json # bad payload for slack
     - shipctl notify mySlackNotifier || true # no payload check
     - shipctl notify badResource || true # no resource check
     - shipctl notify myIRC || true # not integration check
     - shipctl notify myDummyImage || true # not a notification resource check
+
+    # send notifications by specifying individual options
+    # defaults will be filled in for any non-specified options.
+    #
+
+    ### Slack
+
+    - shipctl notify mySlackNotifier --text="build" --username="test1" # should send to all recipients in the resource
+    - shipctl notify mySlackNotifier --text="hello world" --recipient="@trriplejay" # text with space does not work at this time.
+    - shipctl notify mySlackNotifier # all defaults
+    - shipctl notify mySlackNotifier --color="#ee5555" # should be reddish
+    - shipctl notify mySlackNotifier --icon_url="https://i.imgur.com/Sdwl8jz.jpg" --pretext="turkeytime"
+
+    ### Webhook
+    - shipctl notify myWebhookPayload --text="build" --username="test1"
+    - shipctl notify myWebhookPayload --text="hello world" --recipient="@trriplejay" # recipient is not supporeted for payload.
+    - shipctl notify myWebhookPayload # all defaults
+    - shipctl notify myWebhookPayload --color="#5555ee" # this key/value will be added, but will not have any effect.
+    - shipctl notify myWebhookPayload --icon_url="https://i.imgur.com/Sdwl8jz.jpg" --pretext="turkeytime"
+
   post_ci:
     - echo "post_ci section"
 
