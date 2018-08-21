@@ -192,7 +192,7 @@ jobs:
       - IN: myIRC
       - IN: myWebhookPayload
       - IN: myDummyImage
-      # - OUT: myParamsTest
+      - OUT: myParamsTest
       - TASK:
           script:
             - echo "hello there"
