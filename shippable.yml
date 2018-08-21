@@ -18,6 +18,8 @@ build:
     # - docker push trriplejay/shipctlenv:latest
 
     # test stuff
+    - echo "wwwUrl is .${SHIPPABLE_WWW_URL}."
+    - echo "buildUrl is  ${BUILD_URL}"
     - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
     - printenv
 
@@ -195,6 +197,8 @@ jobs:
       - OUT: myParamsTest
       - TASK:
           script:
+            - echo "wwwUrl is $SHIPPABLE_WWW_URL"
+            - echo "buildUrl is  ${BUILD_URL}"
             - echo "hello there"
             - cat $JOB_STATE/myParamsTest.env
             - shipctl put_resource_state myParamsTest anotherNumber 54321
