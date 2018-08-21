@@ -168,6 +168,13 @@ resources:
       recipients:
         - "hmmm"
 
+  - name: myParamsTest
+    type: params
+    versionTemplate:
+      params:
+        number: 12345
+        numberstring: "12345"
+
 
 jobs:
   - name: simpleserver_runCI
@@ -185,9 +192,14 @@ jobs:
       - IN: myIRC
       - IN: myWebhookPayload
       - IN: myDummyImage
+      - IN: myParamsTest
       - TASK:
           script:
             - echo "hello there"
+            - cat $MYPARAMSTEST_META/myParamsTest.env
+            - shipctl put_resource_state myParamsTest anotherNumber 54321
+            - shipctl put_resource_state myParamsTest anotherNumberString "54321"
+            - cat $MYPARAMSTEST_META/myParamsTest.env
             # test stuff
             - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
             - printenv
@@ -213,3 +225,40 @@ jobs:
             - shipctl notify badResource || true # no resource check
             - shipctl notify myIRC || true # not integration check
             - shipctl notify myDummyImage || true # not a notification resource check
+
+            # send notifications by specifying individual options
+            # defaults will be filled in for any non-specified options.
+            #
+
+            ### Slack
+
+            - shipctl notify mySlackNotifier --text="build" --username="test1" # should send to all recipients in the resource
+            - shipctl notify mySlackNotifier --text="hello world" --recipient="@trriplejay" # text with space does not work at this time.
+            - shipctl notify mySlackNotifier # all defaults
+            - shipctl notify mySlackNotifier --color="#ee5555" # should be reddish
+            - shipctl notify mySlackNotifier --icon_url="https://i.imgur.com/Sdwl8jz.jpg" --pretext="turkeytime"
+
+            ### Webhook
+            - shipctl notify myWebhookPayload --text="build" --username="test1"
+            - shipctl notify myWebhookPayload --text="hello world" --recipient="@trriplejay" # recipient is not supporeted for payload.
+            - shipctl notify myWebhookPayload # all defaults
+            - shipctl notify myWebhookPayload --color="#5555ee" # this key/value will be added, but will not have any effect.
+            - shipctl notify myWebhookPayload --icon_url="https://i.imgur.com/Sdwl8jz.jpg" --pretext="turkeytime"
+
+            ### ENVs
+            - export NOTIFY_TEXT="text from an env"
+            - export NOTIFY_PRETEXT="pretext from an env"
+            - export NOTIFY_RECIPIENT="@trriplejay"
+            - export NOTIFY_COLOR="#00ff00" # very green
+
+            - shipctl notify mySlackNotifier
+            - shipctl notify myWebhookPayload
+
+            # back to defaults
+            - export NOTIFY_TEXT=""
+            - export NOTIFY_PRETEXT=""
+            - export NOTIFY_RECIPIENT=""
+            - export NOTIFY_COLOR=""
+
+            - shipctl notify mySlackNotifier
+            - shipctl notify myWebhookPayload
