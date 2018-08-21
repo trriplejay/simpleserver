@@ -197,7 +197,7 @@ jobs:
       - OUT: myParamsTest
       - TASK:
           script:
-            - cat /build/message.json | jq '.'
+            - cat /var/lib/shippable/build/message.json | jq
             - echo "wwwUrl is $SHIPPABLE_WWW_URL"
             - echo "buildUrl is  ${BUILD_URL}"
             - echo "hello there"
