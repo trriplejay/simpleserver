@@ -209,7 +209,7 @@ jobs:
             # - cat $JOB_STATE/myParamsTest.env
             # test stuff
             - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
-            - printenv
+            #- printenv
 
             #set up payloads
             - pretext=`date`
@@ -221,7 +221,7 @@ jobs:
             - echo "$hook_payload" > hook_payload.json
             - cat `pwd`/hook_payload.json
             - jq type `pwd`/hook_payload.json
-            - curl --version
+            #- curl --version
 
             # send notifications
 
