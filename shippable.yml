@@ -212,12 +212,12 @@ jobs:
             #- printenv
 
             #set up payloads
-            - pretext=`date`
-            - text="Job $JOB_NAME build number $BUILD_NUMBER"
-            - slack_payload="{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
+            - $pretext = testpretext
+            - $text = "Job $env:JOB_NAME build number $env:BUILD_NUMBER"
+            - $slack_payload = "{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
             - echo "$slack_payload" > slack_payload.json
             - cat `pwd`/slack_payload.json
-            - hook_payload="{\"hello\":\"world\"}"
+            - $hook_payload = "{\"hello\":\"world\"}"
             - echo "$hook_payload" > hook_payload.json
             - cat `pwd`/hook_payload.json
             - jq type `pwd`/hook_payload.json
@@ -225,9 +225,9 @@ jobs:
 
             # send notifications
 
-            - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
-            - shipctl notify myWebhookPayload --payload=`pwd`/hook_payload.json # valid
-            - shipctl notify mySlackNotifier --payload=`pwd`/slack_payload.json # valid
+            - shipctl notify mySlackNotifier -payload slack_payload.json # valid
+            - shipctl notify myWebhookPayload -payload hook_payload.json # valid
+            - shipctl notify mySlackNotifier -payload slack_payload.json # valid
             - shipctl notify mySlackNotifier || true # no payload check
             - shipctl notify badResource || true # no resource check
             - shipctl notify myIRC || true # not integration check
