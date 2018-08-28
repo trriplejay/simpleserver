@@ -205,10 +205,10 @@ jobs:
             - shipctl put_resource_state myParamsTest anotherNumber 54321
             - shipctl put_resource_state myParamsTest anotherNumberString "54321"
             - shipctl put_resource_state myParamsTest space "543 210"
-            - echo "space value is .${space}."
+            # - echo "space value is .${space}."
             # - cat $JOB_STATE/myParamsTest.env
             # test stuff
-            - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
+            # - echo "API URL IS .${API_URL}. or .${SHIPPABLE_API_URL}."
             #- printenv
 
             #set up payloads
