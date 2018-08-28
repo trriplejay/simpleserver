@@ -212,7 +212,7 @@ jobs:
             #- printenv
 
             #set up payloads
-            - $pretext = testpretext
+            - $pretext = "testpretext"
             - $text = "Job $env:JOB_NAME build number $env:BUILD_NUMBER"
             - $slack_payload = "{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
             - echo "$slack_payload" > slack_payload.json
