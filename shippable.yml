@@ -220,7 +220,7 @@ jobs:
             - $hook_payload = "{\`"hello\`":\`"world\`"}"
             - Out-File -FilePath "hook_payload.json" -InputObject $hook_payload
             - Get-Content -Path "hook_payload.json"
-            - jq type hook_payload.json
+            #- jq type hook_payload.json
             #- curl --version
 
             # send notifications
