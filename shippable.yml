@@ -215,13 +215,13 @@ jobs:
             - $pretext = "testpretext"
             - $text = "Job $env:JOB_NAME build number $env:BUILD_NUMBER"
             - $slack_payload = '{"username":"trriplejay","attachments":[{"pretext":"$pretext\n","text":"$text\n"}],"channel":"@trriplejay"}'
-            - Set-Content -Path "slack_payload.json" -Value $slack_payload
-            #- Out-File -FilePath "slack_payload.json" -InputObject $slack_payload
-            - Get-Content -Path "slack_payload.json"
+            #- Set-Content -Path "slack_payload.json" -Value $slack_payload
+            - $slack_payload | Out-File -File "slack_payload.json"
+            - type "slack_payload.json"
             - $hook_payload = '{"hello":"world"}'
-            - Set-Content -Path "hook_payload.json" -Value $hook_payload
-            #- Out-File -FilePath "hook_payload.json" -InputObject $hook_payload
-            - Get-Content -Path "hook_payload.json"
+            #- Set-Content -Path "hook_payload.json" -Value $hook_payload
+            - $hook_payload | Out-File -File "hook_payload.json"
+            - type "hook_payload.json"
             #- jq type hook_payload.json
             #- curl --version
 
