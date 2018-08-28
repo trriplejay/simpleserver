@@ -214,13 +214,13 @@ jobs:
             #set up payloads
             - $pretext = "testpretext"
             - $text = "Job $env:JOB_NAME build number $env:BUILD_NUMBER"
-            - $slack_payload = "{\"username\":\"trriplejay\",\"attachments\":[{\"pretext\":\"${pretext}\n\",\"text\":\"${text}\n\"}],\"channel\":\"@trriplejay\"}"
+            - $slack_payload = "{\`"username\`":\`"trriplejay\`",\`"attachments\`":[{\`"pretext\`":\`"\`$pretext\n\`",\`"text\`":\`"\`$text\n\`"}],\`"channel\`":\`"@trriplejay\`"}"
             - echo "$slack_payload" > slack_payload.json
-            - cat `pwd`/slack_payload.json
-            - $hook_payload = "{\"hello\":\"world\"}"
+            - cat slack_payload.json
+            - $hook_payload = "{\`"hello\`":\`"world\`"}"
             - echo "$hook_payload" > hook_payload.json
-            - cat `pwd`/hook_payload.json
-            - jq type `pwd`/hook_payload.json
+            - cat hook_payload.json
+            - jq type hook_payload.json
             #- curl --version
 
             # send notifications
