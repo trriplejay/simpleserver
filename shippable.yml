@@ -232,6 +232,9 @@ jobs:
             # send notifications
 
             - shipctl notify mySlackNotifier -payload slack_payload.json # valid
+            - write-output "sleeping for 10"
+            - sleep 10
+            - write-output "done sleeping for 10"
             - shipctl notify myWebhookPayload -payload hook_payload.json # valid
             - shipctl notify mySlackNotifier -payload slack_payload.json # valid
             - shipctl notify mySlackNotifier || true # no payload check
