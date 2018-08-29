@@ -216,15 +216,15 @@ jobs:
             - $text = "Job $env:JOB_NAME build number $env:BUILD_NUMBER"
             - $slack_payload = '{"username":"trriplejay","attachments":[{"pretext":"test","text":"textest"}],"channel":"@trriplejay"}'
             #- $slack_payload = '{"username":"trriplejay","attachments":[{"pretext":"\`$pretext`r`n","text":"\`$text`r`n"}],"channel":"@trriplejay"}'
-            - Write-Output "$slack_payload"
+            - Write-Output "$env:slack_payload"
             #- Set-Content -Path "slack_payload.json" -Value $slack_payload
             - Get-ChildItem
-            - $slack_payload | Out-File slack_payload.json
+            - $env:slack_payload | Out-File slack_payload.json
             - Get-ChildItem
             - Get-Content "slack_payload.json"
             - $hook_payload = '{"hello":"world"}'
             #- Set-Content -Path "hook_payload.json" -Value $hook_payload
-            - $hook_payload | Out-File hook_payload.json
+            - $env:hook_payload | Out-File hook_payload.json
             - Get-Content "hook_payload.json"
             #- jq type hook_payload.json
             #- curl --version
