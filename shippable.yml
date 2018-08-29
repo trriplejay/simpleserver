@@ -215,7 +215,7 @@ jobs:
             - $env:pretext = "testpretext"
             - $env:text = "Job $env:JOB_NAME build number $env:BUILD_NUMBER"
             #- $env:slack_payload = '{"username":"trriplejay","attachments":[{"pretext":"test","text":"textest"}],"channel":"@trriplejay"}'
-            - $env:slack_payload = '{"username":"trriplejay","attachments":[{"pretext":"$pretext","text":"$text"}],"channel":"@trriplejay"}'
+            - $env:slack_payload = "{`"username`":`"trriplejay`",`"attachments`":[{`"pretext`":`"$env:pretext`",`"text`":`"$env:text`"}],`"channel`":`"@trriplejay`"}"
             - Write-Output "$env:slack_payload"
             #- Set-Content -Path "slack_payload.json" -Value $slack_payload
             - Get-ChildItem
