@@ -214,7 +214,7 @@ jobs:
             #set up payloads
             - $pretext = "testpretext"
             - $text = "Job $env:JOB_NAME build number $env:BUILD_NUMBER"
-            - $slack_payload = '{"username":"trriplejay","attachments":[{"pretext":"$pretext\n","text":"$text\n"}],"channel":"@trriplejay"}'
+            - $slack_payload = '{"username":"trriplejay","attachments":[{"pretext":"\`$pretext\n","text":"\`$text\n"}],"channel":"@trriplejay"}'
             - Write-Output "$slack_payload"
             #- Set-Content -Path "slack_payload.json" -Value $slack_payload
             - Get-ChildItem
