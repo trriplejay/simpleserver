@@ -182,7 +182,6 @@ jobs:
   - name: simpleserver_runCI
     type: runCI
     steps:
-      - IN: trigger-3
       - IN: mySlackNotifier
       - IN: myIRC
       - IN: myWebhookPayload
@@ -191,7 +190,6 @@ jobs:
   - name: simpleserver_runSh
     type: runSh
     steps:
-      - IN: trigger-3
       - IN: mySlackNotifier
       - IN: myIRC
       - IN: myWebhookPayload
