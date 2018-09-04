@@ -64,7 +64,7 @@ build:
     ### Slack with default channel
     - shipctl notify mySlackNoRecipient
     - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1"
-    - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1 -recipient "shippable_test"
+    - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1" -recipient "shippable_test"
 
 
     ### Webhook
@@ -267,7 +267,7 @@ jobs:
             ### Slack with default channel
             - shipctl notify mySlackNoRecipient
             - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1"
-            - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1 -recipient "shippable_test"
+            - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1" -recipient "shippable_test"
 
 
             ### Webhook
