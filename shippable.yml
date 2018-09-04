@@ -154,7 +154,7 @@ resources:
         - "@trriplejay"
         - "#shippable_test"
 
-- name: mySlackNoRecipient
+  - name: mySlackNoRecipient
     type: notification
     integration: imperialchat
     versionTemplate:
