@@ -154,6 +154,12 @@ resources:
         - "@trriplejay"
         - "#shippable_test"
 
+- name: mySlackNoRecipient
+    type: notification
+    integration: imperialchat
+    versionTemplate:
+      test: blah
+
   - name: myIRC
     type: notification
     versionTemplate:
@@ -191,6 +197,7 @@ jobs:
     type: runSh
     steps:
       - IN: mySlackNotifier
+      - IN: mySlackNoRecipient
       - IN: myIRC
       - IN: myWebhookPayload
       - IN: myDummyImage
@@ -249,6 +256,12 @@ jobs:
             - shipctl notify mySlackNotifier # all defaults
             - shipctl notify mySlackNotifier -color "#ee5555" # should be reddish
             - shipctl notify mySlackNotifier -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
+
+            ### Slack with default channel
+            - shipctl notify mySlackNoRecipient
+            - shipctl notify mySlackNoRecipient -text "test" -username "test1"
+            - shipctl notify mySlackNoRecipient -text "test" -username "test1 -recipient "shippable_test"
+
 
             ### Webhook
             - shipctl notify myWebhookPayload -text "build" -username "test1"
