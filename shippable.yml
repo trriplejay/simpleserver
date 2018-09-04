@@ -61,6 +61,12 @@ build:
     - shipctl notify mySlackNotifier --color="#ee5555" # should be reddish
     - shipctl notify mySlackNotifier --icon_url="https://i.imgur.com/Sdwl8jz.jpg" --pretext="turkeytime"
 
+    ### Slack with default channel
+    - shipctl notify mySlackNoRecipient
+    - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1"
+    - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1 -recipient "shippable_test"
+
+
     ### Webhook
     - shipctl notify myWebhookPayload --text="build" --username="test1"
     - shipctl notify myWebhookPayload --text="hello world" --recipient="@trriplejay" # recipient is not supporeted for payload.
@@ -189,6 +195,7 @@ jobs:
     type: runCI
     steps:
       - IN: mySlackNotifier
+      - IN: mySlackNoRecipient
       - IN: myIRC
       - IN: myWebhookPayload
       - IN: myDummyImage
@@ -251,24 +258,24 @@ jobs:
 
             ### Slack
 
-            - shipctl notify mySlackNotifier -text "build" -username "test1" # should send to all recipients in the resource
-            - shipctl notify mySlackNotifier -text "hello world" -recipient "@trriplejay" # text with space does not work at this time.
-            - shipctl notify mySlackNotifier # all defaults
-            - shipctl notify mySlackNotifier -color "#ee5555" # should be reddish
-            - shipctl notify mySlackNotifier -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
+            # - shipctl notify mySlackNotifier -text "build" -username "test1" # should send to all recipients in the resource
+            # - shipctl notify mySlackNotifier -text "hello world" -recipient "@trriplejay" # text with space does not work at this time.
+            # - shipctl notify mySlackNotifier # all defaults
+            # - shipctl notify mySlackNotifier -color "#ee5555" # should be reddish
+            # - shipctl notify mySlackNotifier -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
 
             ### Slack with default channel
             - shipctl notify mySlackNoRecipient
-            - shipctl notify mySlackNoRecipient -text "test" -username "test1"
-            - shipctl notify mySlackNoRecipient -text "test" -username "test1 -recipient "shippable_test"
+            - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1"
+            - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1 -recipient "shippable_test"
 
 
             ### Webhook
-            - shipctl notify myWebhookPayload -text "build" -username "test1"
-            - shipctl notify myWebhookPayload -text "hello world" -recipient "@trriplejay" # recipient is not supporeted for payload.
-            - shipctl notify myWebhookPayload # all defaults
-            - shipctl notify myWebhookPayload -color "#5555ee" # this key/value will be added, but will not have any effect.
-            - shipctl notify myWebhookPayload -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
+            # - shipctl notify myWebhookPayload -text "build" -username "test1"
+            # - shipctl notify myWebhookPayload -text "hello world" -recipient "@trriplejay" # recipient is not supporeted for payload.
+            # - shipctl notify myWebhookPayload # all defaults
+            # - shipctl notify myWebhookPayload -color "#5555ee" # this key/value will be added, but will not have any effect.
+            # - shipctl notify myWebhookPayload -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
 
             ### ENVs
             - $env:NOTIFY_TEXT = "text from an env"
@@ -276,8 +283,8 @@ jobs:
             - $env:NOTIFY_RECIPIENT = "@trriplejay"
             - $env:NOTIFY_COLOR = "#00ff00" # very green
 
-            - shipctl notify mySlackNotifier
-            - shipctl notify myWebhookPayload
+            # - shipctl notify mySlackNotifier
+            # - shipctl notify myWebhookPayload
 
             # back to defaults
             - $env:NOTIFY_TEXT = ""
@@ -285,5 +292,5 @@ jobs:
             - $env:NOTIFY_RECIPIENT = ""
             - $env:NOTIFY_COLOR = ""
 
-            - shipctl notify mySlackNotifier
-            - shipctl notify myWebhookPayload
+            # - shipctl notify mySlackNotifier
+            # - shipctl notify myWebhookPayload
