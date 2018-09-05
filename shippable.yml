@@ -247,6 +247,7 @@ jobs:
 
             - shipctl notify mySlackNotifier -payload slack_payload.json # valid
             - shipctl notify myWebhookPayload -payload hook_payload.json # valid
+            - try { shipctl notify } catch {write-output "error"} #no arguments check
             - try { shipctl notify mySlackNotifier } catch {write-output "error"} # no payload check
             - try { shipctl notify badResource } catch {write-output "error"} # no resource check
             - try { shipctl notify myIRC } catch {write-output "error"}# no integration check
