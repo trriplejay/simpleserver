@@ -171,8 +171,7 @@ resources:
     versionTemplate:
       method: irc
       recipients:
-        - "@trriplejay"
-        - "#shippable"
+        - "#shippable-test"
         - "#imperialchat"
 
   - name: myWebhookPayload
@@ -245,59 +244,61 @@ jobs:
 
             # send notifications
 
-            # - shipctl notify mySlackNotifier -payload slack_payload.json # valid
-            # - shipctl notify myWebhookPayload -payload hook_payload.json # valid
+            - shipctl notify mySlackNotifier -payload slack_payload.json # valid
+            - shipctl notify myWebhookPayload -payload hook_payload.json # valid
 
-            - shipctl notify myDummyImage # not a notification resource check
-            - shipctl notify myIRC # no integration check
-            - shipctl notify badResource # no resource check
-            - shipctl notify #no arguments check
+            # - shipctl notify myDummyImage # not a notification resource check
+            # - shipctl notify myIRC # no integration check
+            # - shipctl notify badResource # no resource check
+            # - shipctl notify #no arguments check
 
-            # - try { shipctl notify } catch {write-output "error"} #no arguments check
-            # - try { shipctl notify mySlackNotifier } catch {write-output "error"} # no payload check
-            # - try { shipctl notify badResource } catch {write-output "error"} # no resource check
-            # - try { shipctl notify myIRC } catch {write-output "error"}# no integration check
-            # - try { shipctl notify myDummyImage } catch {write-output "error"} # not a notification resource check
+            - try { shipctl notify } catch {write-output "error"} #no arguments check
+            - try { shipctl notify mySlackNotifier } catch {write-output "error"} # no payload check
+            - try { shipctl notify badResource } catch {write-output "error"} # no resource check
+            - try { shipctl notify myDummyImage } catch {write-output "error"} # not a notification resource check
 
             # send notifications by specifying individual options
             # defaults will be filled in for any non-specified options.
             #
 
-            # ### Slack
+            ### Slack
 
-            # - shipctl notify mySlackNotifier -text "build" -username "test1" # should send to all recipients in the resource
-            # - shipctl notify mySlackNotifier -text "hello world" -recipient "@trriplejay" # text with space does not work at this time.
-            # - shipctl notify mySlackNotifier # all defaults
-            # - shipctl notify mySlackNotifier -color "#ee5555" # should be reddish
-            # - shipctl notify mySlackNotifier -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
+            - shipctl notify mySlackNotifier -text "build" -username "test1" # should send to all recipients in the resource
+            - shipctl notify mySlackNotifier -text "hello world" -recipient "@trriplejay" # text with space does not work at this time.
+            - shipctl notify mySlackNotifier # all defaults
+            - shipctl notify mySlackNotifier -color "#ee5555" # should be reddish
+            - shipctl notify mySlackNotifier -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
 
-            # ### Slack with default channel
-            # - shipctl notify mySlackNoRecipient
-            # - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1"
-            # - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1" -recipient "shippable_test"
+            ### Slack with default channel
+            - shipctl notify mySlackNoRecipient
+            - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1"
+            - shipctl notify mySlackNoRecipient -text "testing with empty channel" -username "test1" -recipient "shippable_test"
 
 
-            # ### Webhook
-            # - shipctl notify myWebhookPayload -text "build" -username "test1"
-            # - shipctl notify myWebhookPayload -text "hello world" -recipient "@trriplejay" # recipient is not supporeted for payload.
-            # - shipctl notify myWebhookPayload # all defaults
-            # - shipctl notify myWebhookPayload -color "#5555ee" # this key/value will be added, but will not have any effect.
-            # - shipctl notify myWebhookPayload -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
+            ### Webhook
+            - shipctl notify myWebhookPayload -text "build" -username "test1"
+            - shipctl notify myWebhookPayload -text "hello world" -recipient "@trriplejay" # recipient is not supporeted for payload.
+            - shipctl notify myWebhookPayload # all defaults
+            - shipctl notify myWebhookPayload -color "#5555ee" # this key/value will be added, but will not have any effect.
+            - shipctl notify myWebhookPayload -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
 
-            # ### ENVs
-            # - $env:NOTIFY_TEXT = "text from an env"
-            # - $env:NOTIFY_PRETEXT = "pretext from an env"
-            # - $env:NOTIFY_RECIPIENT = "@trriplejay"
-            # - $env:NOTIFY_COLOR = "#00ff00" # very green
+            ### IRC
+            - shipctl notify myIRC
 
-            # - shipctl notify mySlackNotifier
-            # - shipctl notify myWebhookPayload
+            ### ENVs
+            - $env:NOTIFY_TEXT = "text from an env"
+            - $env:NOTIFY_PRETEXT = "pretext from an env"
+            - $env:NOTIFY_RECIPIENT = "@trriplejay"
+            - $env:NOTIFY_COLOR = "#00ff00" # very green
 
-            # # back to defaults
-            # - $env:NOTIFY_TEXT = ""
-            # - $env:NOTIFY_PRETEXT = ""
-            # - $env:NOTIFY_RECIPIENT = ""
-            # - $env:NOTIFY_COLOR = ""
+            - shipctl notify mySlackNotifier
+            - shipctl notify myWebhookPayload
 
-            # - shipctl notify mySlackNotifier
-            # - shipctl notify myWebhookPayload
+            # back to defaults
+            - $env:NOTIFY_TEXT = ""
+            - $env:NOTIFY_PRETEXT = ""
+            - $env:NOTIFY_RECIPIENT = ""
+            - $env:NOTIFY_COLOR = ""
+
+            - shipctl notify mySlackNotifier
+            - shipctl notify myWebhookPayload
