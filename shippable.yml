@@ -283,7 +283,7 @@ jobs:
             # - shipctl notify myWebhookPayload -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
 
             ### IRC
-            - shipctl notify myIRC -recipient "138.68.251.102#shippable"
+            - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, world!"
 
             # ### ENVs
             # - $env:NOTIFY_TEXT = "text from an env"
