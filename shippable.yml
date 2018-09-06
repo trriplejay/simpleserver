@@ -284,6 +284,11 @@ jobs:
 
             ### IRC
             - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, world!"
+            - shipctl notify myIRC
+            - shipctl notify myIRC -text "blahblah"
+            - shipctl notify myIRC -recipient "#efg" # no server
+            - shipctl notify myIRC -recipient "irc.freenode.net#" # no channel
+            - shipctl notify myIRC - recipient "asdf" # no nothin'
 
             # ### ENVs
             # - $env:NOTIFY_TEXT = "text from an env"
