@@ -172,7 +172,7 @@ resources:
       method: irc
       recipients:
         #- "irc.rizon.net#shippable"
-        - "chat.freenode.net#shippable"
+        - "irc.freenode.net#shippable"
 
   - name: myWebhookPayload
     type: notification
