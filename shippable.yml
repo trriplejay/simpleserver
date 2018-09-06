@@ -171,8 +171,8 @@ resources:
     versionTemplate:
       method: irc
       recipients:
-        - "#shippable-test"
-        - "#imperialchat"
+        - "irc.rizon.net#shippable"
+        - "chat.freenode.net#shippable"
 
   - name: myWebhookPayload
     type: notification
