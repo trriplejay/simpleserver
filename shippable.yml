@@ -296,8 +296,8 @@ jobs:
             - shipctl notify myIRC -text "blahblah"
             - try { shipctl notify myBadIRC } catch { write-output "error" } # no recipient
             - try { shipctl notify myIRC -recipient "#efg" } catch { write-output "error, no server" } # no server
-            - try { shipctl notify myIRC -recipient "irc.freenode.net#"} catch {write-output "error, no channel"} # no channel
-            - try { shipctl notify myIRC -recipient "asdf" } catch { write-output "error, no channel } # no nothin'
+            - try { shipctl notify myIRC -recipient "irc.freenode.net#"} catch { write-output "error, no channel" } # no channel
+            - try { shipctl notify myIRC -recipient "asdf" } catch { write-output "error, no channel" } # no nothin'
             - shipctl notify myIRC
 
             # ### ENVs
