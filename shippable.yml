@@ -290,8 +290,8 @@ jobs:
 
             ### IRC
 
-            - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, world!"
-            - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, again!"
+            - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, world!" -username "firsttest"
+            - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, again!" -username "secondtest"
             - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "one more time!"
             - shipctl notify myIRC -text "blahblah"
             - try { shipctl notify myBadIRC } catch { write-output "error" } # no recipient
