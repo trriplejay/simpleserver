@@ -289,9 +289,12 @@ jobs:
             # - shipctl notify myWebhookPayload -icon_url "https://i.imgur.com/Sdwl8jz.jpg" -pretext "turkeytime"
 
             ### IRC
-            - shipctl notify myBadIRC
+
             - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, world!"
+            - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, again!"
+            - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "one more time!"
             - shipctl notify myIRC -text "blahblah"
+            - try { shipctl notify myBadIRC } catch { write-output "error" } # no recipient
             - try { shipctl notify myIRC -recipient "#efg" } catch { write-output "error, no server" } # no server
             - try { shipctl notify myIRC -recipient "irc.freenode.net#"} catch {write-output "error, no channel"} # no channel
             - try { shipctl notify myIRC -recipient "asdf" } catch { write-output "error, no channel } # no nothin'
