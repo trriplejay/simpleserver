@@ -293,8 +293,8 @@ jobs:
             - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, world!"
             - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "hello, again!"
             - shipctl notify myIRC -recipient "138.68.251.102#shippable" -text "one more time!"
-            - shipctl notify myIRC -recipient "irc.rizon.net#shippable" -text "rizon testing!"
-            - shipctl notify myIRC -recipient "irc.rizon.net#shippable" -text "rizon testing part 2!"
+            - shipctl notify myIRC -recipient "irc.rizon.net#shippable" -text "rizon testing!"" -username shippable-test -password passw0rd
+            - shipctl notify myIRC -recipient "irc.rizon.net#shippable" -text "rizon testing part 2!" -username shippable-test -password passw0rd
             - shipctl notify myIRC -text "blahblah"
             - try { shipctl notify myBadIRC } catch { write-output "error" } # no recipient
             - try { shipctl notify myIRC -recipient "#efg" } catch { write-output "error, no server" } # no server
