@@ -4,7 +4,9 @@ language: none
 #services:
 #  - mysql
 #  - elasticsearch
-
+tags:
+  only:
+    - v2.*
 env:
   matrix:
     #- environment=integration
