@@ -24,6 +24,7 @@ build:
     - echo "hello world" > test.txt
     - ls
     - chown root:root /tmp 
+    - ls -latr /
     - sudo apt-get update
     - docker ps -a
     #- curl http://169.254.169.254/latest/meta-data/public-ipv4
