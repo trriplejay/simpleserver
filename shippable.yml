@@ -35,6 +35,7 @@ build:
     - /test
   #  - $SHIPPABLE_BUILD_DIR/node_modules
   ci:
+    - set -x
     - echo "myhost is $MYHOST"
     - echo "build id is $SHIPPABLE_BUILD_ID"
     - echo "job number is $SHIPPABLE_JOB_ID"
@@ -54,6 +55,7 @@ build:
     #- docker logs --tail=50 $CONTAINER_ID
     #- curl -XGET localhost:8080
     - echo $FAKE_VAR
+    - set +x
     - echo "IS_PULL_REQUEST IS -> "$IS_PULL_REQUEST
     - echo "$HOME"
     - echo "$USER"
