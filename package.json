@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "./node_modules/prettier/bin-prettier.js --list-different --single-quote ./**/*.js"
+    "test": "./node_modules/prettier/bin-prettier.js --list-different --single-quote './**/*.js'"
   },
   "dependencies": {
     "express": "*"
