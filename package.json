@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "./node_modules/prettier/bin-prettier.js --list-different --single-quote ./**/*.js"
   },
   "dependencies": {
     "express": "*"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.1"
   }
 }
