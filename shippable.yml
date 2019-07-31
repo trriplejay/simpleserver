@@ -267,5 +267,5 @@ jobs:
             - export NOTIFY_RECIPIENT=""
             - export NOTIFY_COLOR=""
 
-            - shipctl notify mySlackNotifier --text="this will soon test \"escaped\" quotes"
+            - shipctl notify mySlackNotifier --text="this will soon test \\"escaped\\" quotes"
 #             - shipctl notify myWebhookPayload
