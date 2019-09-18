@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   repository: trriplejay/simpleserver
-  tag: stable
+  tag: testest
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
