@@ -36,9 +36,6 @@ spec:
             httpGet:
               path: /
               port: http
-          env:
-            - name: PORT
-              value: {{ .Values.image.port }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
