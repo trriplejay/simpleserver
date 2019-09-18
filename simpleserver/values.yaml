@@ -7,13 +7,14 @@ image:
   repository: trriplejay/simpleserver
   tag: testest
   pullPolicy: IfNotPresent
+  port: 80
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 8888
 
 ingress:
