@@ -1,0 +1,80 @@
+resources:
+  - name: simplehelmChart
+    type: HelmChart
+    configuration:
+      sourceArtifactory: tr_artifactory
+      repository: simplecharts
+      chart: simplehelm
+      version: 0
+
+  - name: simplehelmRepo_chart
+    type: GitRepo
+    configuration:
+      gitProvider: tr_github
+      path: trriplejay/simplehelm
+
+  - name: simplehelmRepo_docker
+    type: GitRepo
+    configuration:
+      gitProvider: tr_github
+      path: trriplejay/simplehelm
+      files:
+        include: "Dockerfile|server.js|package.json"
+
+  - name: simplehelmImage
+    type: Image
+    configuration:
+      registry: tr_docker
+      sourceRepository: simpleimages
+      imageName: simplehelm/app
+      imageTag: latest
+
+pipelines:
+  - name: helm_full_flow
+    steps:
+      - name: build
+        type: DockerBuild
+        configuration:
+          affinityGroup: buildAndPush
+          integrations:
+            - name: tr_artifactory
+          inputResources:
+            - name: simplehelmRepo
+          dockerFileLocation: .
+          dockerFileName: Dockerfile
+          dockerImageName: simplehelm/app
+          dockerImageTag: $run_number
+
+      - name: push
+        type: DockerPush
+        configuration:
+          affinityGroup: buildAndPush
+          integrations:
+            - name: tr_artifactory
+          targetRepository: simplehelm/app
+          inputSteps:
+            - name: build
+          outputResources:
+            - name: simplehelmImage
+        execution:
+          onSuccess:
+            - write_output simplehelmImage "imageTag=$run_number"
+
+      - name: publish_helm_chart
+        type: HelmPublish
+        configuration:
+          inputResources:
+            - name: simplehelmRepo
+          outputResources:
+            - name: simplehelmChart
+          chartPath: ./simplehelm
+
+      - name: deploy_helm_chart
+        type: HelmDeploy
+        configuration:
+          integrations:
+            - name: tr_kubernetes
+          inputResources:
+            - name: simplehelmChart
+            - name: simplehelmImage
+          releaseName: simplehelm

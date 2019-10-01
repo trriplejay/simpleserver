@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "simpleserver.fullname" . }}
+  name: {{ include "simplehelm.fullname" . }}
   labels:
-{{ include "simpleserver.labels" . | indent 4 }}
+{{ include "simplehelm.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "simpleserver.name" . }}
+      app.kubernetes.io/name: {{ include "simplehelm.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "simpleserver.name" . }}
+        app.kubernetes.io/name: {{ include "simplehelm.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
