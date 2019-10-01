@@ -26,9 +26,8 @@ resources:
   - name: simplehelmImage
     type: Image
     configuration:
-      registry: art
-      sourceRepository: appImages
-      imageName: simplehelm/app
+      registry: tr_docker
+      imageName: trriplejay/simplehelm
       imageTag: latest
 
 pipelines:
@@ -39,12 +38,12 @@ pipelines:
         configuration:
           affinityGroup: buildAndPush
           integrations:
-            - name: art
+            - name: tr_docker
           inputResources:
             - name: simplehelmRepo_docker
           dockerFileLocation: .
           dockerFileName: Dockerfile
-          dockerImageName: simplehelm/app
+          dockerImageName: trriplejay/simplehelm
           dockerImageTag: $run_number
 
       - name: push
@@ -53,7 +52,7 @@ pipelines:
           affinityGroup: buildAndPush
           integrations:
             - name: art
-          targetRepository: simplehelm/app
+          targetRepository: trriplejay/simplehelm
           inputSteps:
             - name: build
           outputResources:
