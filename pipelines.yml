@@ -44,6 +44,8 @@ pipelines:
           outputResources:
             - name: simplehelmDockerImage
         execution:
+          onStart:
+            - helm version
           onExecute:
             - pushd $res_simplehelmRepo_docker_resourcePath
             - docker build -t trriplejay/simplehelm:$run_number .
@@ -96,3 +98,4 @@ pipelines:
             - name: simplehelmChart
             - name: simplehelmDockerImage
           releaseName: simplehelm
+
