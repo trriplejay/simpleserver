@@ -1,7 +1,4 @@
 ### simpleserver
 
-simple nodejs express server
+demonstrates and end to end JFrog Pipeline for a simple dockerized nodejs application and accompanying Helm chart
 
-Responds "Hello World" when '/' route is hit.
-
-gives details on the build that created it, if present
