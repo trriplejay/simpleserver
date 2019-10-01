@@ -76,6 +76,8 @@ pipelines:
             - name: simplehelmDockerImage
           releaseName: simplehelm
           flags: "--namespace dev"
+          valueFilePaths:
+            - values.yaml
         execution:
           onStart:
             - pushd /tmp
