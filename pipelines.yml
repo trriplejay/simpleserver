@@ -23,7 +23,7 @@ resources:
       files:
         include: "Dockerfile|server.js|package.json"
 
-  - name: simplehelmImage
+  - name: simplehelmDockerImage
     type: Image
     configuration:
       registry: tr_docker
@@ -56,10 +56,10 @@ pipelines:
           inputSteps:
             - name: build
           outputResources:
-            - name: simplehelmImage
+            - name: simplehelmDockerImage
         execution:
           onSuccess:
-            - write_output simplehelmImage "imageTag=$run_number"
+            - write_output simplehelmDockerImage "imageTag=$run_number"
 
       - name: publish_helm_chart
         type: HelmPublish
@@ -77,5 +77,5 @@ pipelines:
             - name: tr_kubernetes
           inputResources:
             - name: simplehelmChart
-            - name: simplehelmImage
+            - name: simplehelmDockerImage
           releaseName: simplehelm
