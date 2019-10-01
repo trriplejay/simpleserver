@@ -45,6 +45,9 @@ pipelines:
             - name: simplehelmDockerImage
         execution:
           onStart:
+            - find / -iname HelmPublish
+            - apt-get install -y tree
+            - tree /jfrog
             - pushd /tmp
             - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
             - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
