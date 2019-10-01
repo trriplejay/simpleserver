@@ -43,53 +43,11 @@ pipelines:
             - name: simplehelmRepo_docker
           outputResources:
             - name: simplehelmDockerImage
-          runtime:
-            type: host
         execution:
-          onStart:
-            - find / -iname HelmPublish
-            - find / -iname GoBuild
-            - apt-get install -y tree
-            - tree /jfrog
-            - pushd /tmp
-            - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
-            - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
-            - mv linux-amd64/helm /usr/local/bin/helm
-            - popd
-            - helm version
           onExecute:
             - pushd $res_simplehelmRepo_docker_resourcePath
             - docker build -t trriplejay/simplehelm:$run_number .
             - docker push trriplejay/simplehelm:$run_number
-
-
-      - name: build
-        type: DockerBuild
-        configuration:
-          affinityGroup: buildAndPush
-          integrations:
-            - name: art
-          inputResources:
-            - name: simplehelmRepo_docker
-          dockerFileLocation: .
-          dockerFileName: Dockerfile
-          dockerImageName: trriplejay/simplehelm
-          dockerImageTag: $run_number
-
-      - name: push
-        type: DockerPush
-        configuration:
-          affinityGroup: buildAndPush
-          integrations:
-            - name: art
-          targetRepository: trriplejay/simplehelm
-          inputSteps:
-            - name: build
-          outputResources:
-            - name: simplehelmDockerImage
-        execution:
-          onSuccess:
-            - write_output simplehelmDockerImage "imageTag=$run_number"
 
       - name: publish_helm_chart
         type: HelmPublish
