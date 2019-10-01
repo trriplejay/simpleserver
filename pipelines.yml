@@ -43,11 +43,11 @@ pipelines:
             - name: simplehelmRepo_docker
           outputResources:
             - name: simplehelmDockerImage
-          execution:
-            onExecute:
-              - pushd $res_simplehelmRepo_docker_resourcePath
-              - docker build -t trriplejay/simplehelm:$run_number .
-              - docker push trriplejay/simplehelm:$run_number
+        execution:
+          onExecute:
+            - pushd $res_simplehelmRepo_docker_resourcePath
+            - docker build -t trriplejay/simplehelm:$run_number .
+            - docker push trriplejay/simplehelm:$run_number
 
 
       # - name: build
