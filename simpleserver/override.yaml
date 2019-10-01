@@ -1,3 +1,0 @@
-replicaCount: ${REPLICAS}
-image:
-  tag: testestest
