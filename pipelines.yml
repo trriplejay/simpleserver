@@ -11,7 +11,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: john_bbs
-      path: trriplejay/simplehelm
+      path: ~johns/simplehelm
       files:
         include: "simplehelm.*"
 
@@ -19,7 +19,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: john_bbs
-      path: trriplejay/simplehelm
+      path: ~johns/simplehelm
       files:
         include: "Dockerfile|server.js|package.json"
 
