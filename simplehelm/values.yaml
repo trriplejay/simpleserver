@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   repository: trriplejay/simplehelm
-  tag: ${res_simplehelmImage_imageTag}
+  tag: ${res_simplehelmDockerImage_imageTag}
   pullPolicy: IfNotPresent
   port: 80
 
