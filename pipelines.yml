@@ -27,39 +27,56 @@ resources:
     type: Image
     configuration:
       registry: tr_docker
+
       imageName: trriplejay/simplehelm
       imageTag: latest
 
 pipelines:
   - name: helm_full_flow
     steps:
-      - name: build
-        type: DockerBuild
+      - name: dockerBuildPush
+        type: Bash
         configuration:
-          affinityGroup: buildAndPush
           integrations:
             - name: tr_docker
           inputResources:
             - name: simplehelmRepo_docker
-          dockerFileLocation: .
-          dockerFileName: Dockerfile
-          dockerImageName: trriplejay/simplehelm
-          dockerImageTag: $run_number
-
-      - name: push
-        type: DockerPush
-        configuration:
-          affinityGroup: buildAndPush
-          integrations:
-            - name: tr_docker
-          targetRepository: trriplejay/simplehelm
-          inputSteps:
-            - name: build
           outputResources:
             - name: simplehelmDockerImage
-        execution:
-          onSuccess:
-            - write_output simplehelmDockerImage "imageTag=$run_number"
+          execution:
+            onExecute:
+              - pushd $res_simplehelmRepo_docker_resourcePath
+              - docker build -t trriplejay/simplehelm:$run_number .
+              - docker push trriplejay/simplehelm:$run_number
+
+
+      # - name: build
+      #   type: DockerBuild
+      #   configuration:
+      #     affinityGroup: buildAndPush
+      #     integrations:
+      #       - name: tr_docker
+      #     inputResources:
+      #       - name: simplehelmRepo_docker
+      #     dockerFileLocation: .
+      #     dockerFileName: Dockerfile
+      #     dockerImageName: trriplejay/simplehelm
+      #     dockerImageTag: $run_number
+
+      # - name: push
+      #   type: DockerPush
+      #   configuration:
+      #     affinityGroup: buildAndPush
+      #     integrations:
+      #       - name: tr_docker
+      #     targetRepository: trriplejay/simplehelm
+      #     inputSteps:
+      #       - name: build
+      #     outputResources:
+      #       - name: simplehelmDockerImage
+      #   execution:
+      #     onSuccess:
+      #       - write_output simplehelmDockerImage "imageTag=$run_number"
 
       - name: publish_helm_chart
         type: HelmPublish
