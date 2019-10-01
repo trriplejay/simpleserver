@@ -41,7 +41,7 @@ pipelines:
           integrations:
             - name: art
           inputResources:
-            - name: simplehelmRepo
+            - name: simplehelmRepo_docker
           dockerFileLocation: .
           dockerFileName: Dockerfile
           dockerImageName: simplehelm/app
@@ -66,7 +66,7 @@ pipelines:
         type: HelmPublish
         configuration:
           inputResources:
-            - name: simplehelmRepo
+            - name: simplehelmRepo_chart
           outputResources:
             - name: simplehelmChart
           chartPath: ./simplehelm
