@@ -51,7 +51,7 @@ pipelines:
         configuration:
           affinityGroup: buildAndPush
           integrations:
-            - name: art
+            - name: tr_docker
           targetRepository: trriplejay/simplehelm
           inputSteps:
             - name: build
