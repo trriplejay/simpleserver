@@ -2,10 +2,10 @@ resources:
   - name: simplehelmChart
     type: HelmChart
     configuration:
-      sourceArtifactory: tr_artifactory
+      sourceArtifactory: art
       repository: simplecharts
       chart: simplehelm
-      version: 0
+      version: 0.0.0
 
   - name: simplehelmRepo_chart
     type: GitRepo
@@ -39,7 +39,7 @@ pipelines:
         configuration:
           affinityGroup: buildAndPush
           integrations:
-            - name: tr_artifactory
+            - name: art
           inputResources:
             - name: simplehelmRepo
           dockerFileLocation: .
@@ -52,7 +52,7 @@ pipelines:
         configuration:
           affinityGroup: buildAndPush
           integrations:
-            - name: tr_artifactory
+            - name: art
           targetRepository: simplehelm/app
           inputSteps:
             - name: build
