@@ -45,6 +45,11 @@ pipelines:
             - name: simplehelmDockerImage
         execution:
           onStart:
+            - pushd /tmp
+            - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
+            - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
+            - mv linux-amd64/helm /usr/local/bin/helm
+            - popd
             - helm version
           onExecute:
             - pushd $res_simplehelmRepo_docker_resourcePath
@@ -88,6 +93,13 @@ pipelines:
           outputResources:
             - name: simplehelmChart
           chartPath: ./simplehelm
+        execution:
+          onStart:
+            - pushd /tmp
+            - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
+            - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
+            - mv linux-amd64/helm /usr/local/bin/helm
+            - popd
 
       - name: deploy_helm_chart
         type: HelmDeploy
@@ -98,4 +110,12 @@ pipelines:
             - name: simplehelmChart
             - name: simplehelmDockerImage
           releaseName: simplehelm
+        execution:
+          onStart:
+            - pushd /tmp
+            - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
+            - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
+            - mv linux-amd64/helm /usr/local/bin/helm
+            - popd
+
 
