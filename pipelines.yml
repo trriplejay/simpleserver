@@ -10,13 +10,15 @@ resources:
   - name: simplehelmRepo_chart
     type: GitRepo
     configuration:
-      gitProvider: tr_github
+      gitProvider: john_bbs
       path: trriplejay/simplehelm
+      files:
+        include: "simplehelm.*"
 
   - name: simplehelmRepo_docker
     type: GitRepo
     configuration:
-      gitProvider: tr_github
+      gitProvider: john_bbs
       path: trriplejay/simplehelm
       files:
         include: "Dockerfile|server.js|package.json"
@@ -24,8 +26,8 @@ resources:
   - name: simplehelmImage
     type: Image
     configuration:
-      registry: tr_docker
-      sourceRepository: simpleimages
+      registry: art
+      sourceRepository: appImages
       imageName: simplehelm/app
       imageTag: latest
 
