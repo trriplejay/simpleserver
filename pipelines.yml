@@ -43,12 +43,14 @@ pipelines:
             - name: simplehelmRepo_docker
           outputResources:
             - name: simplehelmDockerImage
+          runtime:
+            type: host
         execution:
           onStart:
             - find / -iname HelmPublish
             - find / -iname GoBuild
             - apt-get install -y tree
-            - tree -L 3 -d /
+            - tree /jfrog
             - pushd /tmp
             - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
             - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
