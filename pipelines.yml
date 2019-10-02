@@ -43,12 +43,12 @@ pipelines:
             - name: simplehelmRepo_docker
           outputResources:
             - name: simplehelmDockerImage
-        execution:
-          onExecute:
-            - pushd $res_simplehelmRepo_docker_resourcePath
-            - docker build -t trriplejay/simplehelm:$run_number .
-            - docker push trriplejay/simplehelm:$run_number
-            - write_output simplehelmDockerImage "imageTag=$run_number"
+        # execution:
+        #   onExecute:
+        #     - pushd $res_simplehelmRepo_docker_resourcePath
+        #     - docker build -t trriplejay/simplehelm:$run_number .
+        #     - docker push trriplejay/simplehelm:$run_number
+        #     - write_output simplehelmDockerImage "imageTag=$run_number"
 
       - name: publish_helm_chart
         type: HelmPublish
@@ -58,13 +58,13 @@ pipelines:
           outputResources:
             - name: simplehelmChart
           chartPath: ./simplehelm
-        execution:
-          onStart:
-            - pushd /tmp
-            - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
-            - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
-            - mv linux-amd64/helm /usr/local/bin/helm
-            - popd
+        # execution:
+        #   onStart:
+        #     - pushd /tmp
+        #     - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
+        #     - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
+        #     - mv linux-amd64/helm /usr/local/bin/helm
+        #     - popd
 
       - name: deploy_helm_chart
         type: HelmDeploy
@@ -78,12 +78,12 @@ pipelines:
           flags: "--namespace dev"
           valueFilePaths:
             - values.yaml
-        execution:
-          onStart:
-            - pushd /tmp
-            - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
-            - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
-            - mv linux-amd64/helm /usr/local/bin/helm
-            - popd
+        # execution:
+        #   onStart:
+        #     - pushd /tmp
+        #     - wget https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz
+        #     - tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
+        #     - mv linux-amd64/helm /usr/local/bin/helm
+        #     - popd
 
 
