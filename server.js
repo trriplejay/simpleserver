@@ -1,8 +1,13 @@
 'use strict';
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var util = require('util');
 
 console.log('starting');
+
+var jsonParser = bodyParser.json();
+var urlEncodedParser = bodyParser.urlencoded({extended: false});
 
 app.get('/', function(req, res) {
   console.log('got a request');
@@ -10,6 +15,31 @@ app.get('/', function(req, res) {
   res.send(response);
 });
 
+app.post('/', jsonParser, postJSONHandler);
+app.post('/json', jsonParser, postJSONHandler)
+app.post('/url', urlEncodedParser, postUrlHandler)
+
 var port = process.env.PORT || 8888;
 console.log('Listening on port: ' + port);
 app.listen(port);
+
+function postJSONHandler(req, res) {
+  console.log('================ BEGIN request body ========');
+  console.log(util.inspect(req.body));
+  console.log('================ END request body ==========');
+  console.log('================ BEGIN request headers =====');
+  console.log(util.inspect(req.headers));
+  console.log('================ END request headers =======');
+  console.log('POST processing complete for path: ' + req.url);
+  res.sendStatus(200);
+}
+
+function postUrlHandler(req, res) {
+  console.log('================ BEGIN request body ========');
+  console.log(util.inspect(req.body));
+  console.log('================ END request body ==========');
+  console.log('================ BEGIN request headers =====');
+  console.log(util.inspect(req.headers));
+  console.log('================ END request headers =======');
+  res.sendStatus(200);
+}

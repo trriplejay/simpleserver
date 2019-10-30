@@ -7,7 +7,8 @@
     "test": "./node_modules/prettier/bin-prettier.js --list-different --single-quote ./**/*.js"
   },
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "body-parser": "*"
   },
   "devDependencies": {
     "prettier": "^1.17.1"
