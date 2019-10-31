@@ -58,11 +58,14 @@ function postSecretHandler(req, res) {
   var secret = 'foobar';
   var body = JSON.stringify(req.body);
   var hmac = crypto.createHmac('sha256', secret).update(body).digest('hex');
-  if (('sha256=' + hmac) !== req.headers['x-hub-signature'])
+  var status;
+  if (('sha256=' + hmac) !== req.headers['x-hub-signature']) {
     console.log('!!!!!!!!!! uh oh, unmatched signature. try again!!!!!!!!!!!')
-  else
+    status = 403;
+  } else {
     console.log('---------- wow, the signatures match! you know my secret!-----------');
-
+    status = 200;
+  }
   console.log('POST processing complete for path: ' + req.url);
-  res.sendStatus(200);
+  res.sendStatus(status);
 }
