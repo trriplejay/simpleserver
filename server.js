@@ -46,7 +46,7 @@ function postUrlHandler(req, res) {
   res.sendStatus(200);
 }
 
-function postJSONHandler(req, res) {
+function postSecretHandler(req, res) {
 
   console.log('================ BEGIN request body ========');
   console.log(util.inspect(req.body));
