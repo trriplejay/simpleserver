@@ -17,4 +17,7 @@ integrations:
       payload:
         - foo=bar
         - branch=$BRANCH
+      on_success: always
+      on_failure: always
+      on_cancel: always
   
