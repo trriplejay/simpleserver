@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "10.18.3"
+  
+build:
+  pre_ci:
+    - echo "blah pre_ci"
+    
+  ci:
+    - echo "blah ci"
+    
+integrations:
+  notifications:
+    - integrationName: myHook
+      type: webhook
+      payload:
+        - foo=$bar
+  
