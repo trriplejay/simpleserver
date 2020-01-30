@@ -9,6 +9,10 @@ build:
     
   ci:
     - echo "blah ci"
+  on_failure:
+    - echo "fail"
+  always:
+    - echo :hmm"
     
 integrations:
   notifications:
