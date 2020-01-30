@@ -5,6 +5,7 @@ node_js:
 build:
   pre_ci:
     - echo "blah pre_ci"
+    - cd baddir
     
   ci:
     - echo "blah ci"
@@ -14,5 +15,6 @@ integrations:
     - integrationName: myHook
       type: webhook
       payload:
-        - foo=$bar
+        - foo=bar
+        - branch=$BRANCH
   
