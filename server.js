@@ -5,7 +5,7 @@ var app = express();
 console.log('starting');
 
 app.get('/', function(req, res) {
-  console.log('got a request');
+  console.log('got a request!');
   var response ='<html><h2>Hello, frogs!</h2></html>'
   res.send(response);
 });
