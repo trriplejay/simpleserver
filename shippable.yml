@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - "10.18.1"
+  
+build:
+  pre_ci:
+    - echo "blah pre_ci"
+    - cd baddir
+    
+  ci:
+    - echo "blah ci"
+  on_failure:
+    - echo "fail"
+  always:
+    - echo :hmm"
+    
+integrations:
+  notifications:
+    - integrationName: myHook
+      type: webhook
+      payload:
+        - foo=bar
+      on_success: always
+      on_failure: always
+      on_cancel: always
+  
