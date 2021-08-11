@@ -1,0 +1,6 @@
+test: 1
+source:
+  name: "myRepo"
+  branch: {{gitRepo}}
+  path: "trriplejay/simpleserver"
+integration: github
