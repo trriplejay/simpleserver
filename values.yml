@@ -4,3 +4,5 @@ source:
   branch: {{gitRepo}}
   path: "trriplejay/simpleserver"
 integration: github
+pipeline:
+  name: conditional_pipeline
