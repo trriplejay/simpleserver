@@ -6,4 +6,4 @@ github:
 image:
   name: simpleserver_image
   imagename: simpleserver
-  tag: latest
+  imagetag: latest
