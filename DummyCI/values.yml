@@ -1,0 +1,9 @@
+pipeline:
+  name: simpleserver_pipe
+github:
+  name: simpleserver_git
+  branch: {{gitBranch}}
+image:
+  name: simpleserver_image
+  imagename: simpleserver
+  tag: latest
