@@ -3,3 +3,8 @@ pipeline:
 services:
   - simple_ui_buildinfo
   - simple_api_buildinfo
+
+cd_repo:
+  name: simple_cd
+  path: trriplejay/simpleserver
+  branch: cd-demo
