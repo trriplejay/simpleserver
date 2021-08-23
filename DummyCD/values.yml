@@ -1,5 +1,5 @@
 pipeline:
-  name: "main_deploy"
+  name: "simple_deploy"
 services:
   - simple_ui_buildinfo
   - simple_api_buildinfo
