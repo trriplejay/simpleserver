@@ -4,8 +4,8 @@ services:
   - simple_ui_buildinfo
   - simple_api_buildinfo
 images:
-  - simple_api_image
-  - simple_ui_image
+  - simple_api_img
+  - simple_ui_img
 
 cd_repo:
   name: simple_cd
