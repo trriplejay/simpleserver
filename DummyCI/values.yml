@@ -1,9 +1,9 @@
 pipeline:
-  name: simpleserver_pipe
+  name: simple_api_pipe
 github:
-  name: simpleserver_git
+  name: simple_api
   branch: {{gitBranch}}
 image:
-  name: simpleserver_image
-  imagename: simpleserver
+  name: simple_api_image
+  imagename: simpleapi
   imagetag: latest
