@@ -1,0 +1,5 @@
+pipeline:
+  name: "main_deploy"
+services:
+  - simple_ui_buildinfo
+  - simple_api_buildinfo
