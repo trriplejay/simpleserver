@@ -3,6 +3,9 @@ pipeline:
 services:
   - simple_ui_buildinfo
   - simple_api_buildinfo
+images:
+  - simple_api_image
+  - simple_ui_image
 
 cd_repo:
   name: simple_cd
