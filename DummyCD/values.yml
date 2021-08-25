@@ -1,8 +1,8 @@
 pipeline:
   name: "simple_deploy"
 services:
-  - simple_ui_buildinfo
-  - simple_api_buildinfo
+  - simple_ui
+  - simple_api
 images:
   - simple_api_img
   - simple_ui_img
