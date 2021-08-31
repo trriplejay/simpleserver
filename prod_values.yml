@@ -1,0 +1,3 @@
+tags:
+  simple_api: ${res_simple_api_production_serviceTag}
+  simple_ui: ${res_simple_ui_production_serviceTag}
