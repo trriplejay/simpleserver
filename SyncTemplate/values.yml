@@ -1,0 +1,4 @@
+template:
+  id: 12
+  namespace: CoreDevOps
+  name: SyncTemplates
