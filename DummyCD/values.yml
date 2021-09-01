@@ -1,5 +1,5 @@
 pipeline:
-  name: "simple_deploy"
+  name: "punchh_cd"
 services:
   - simple_ui
   - simple_api

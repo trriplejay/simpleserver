@@ -1,3 +1,3 @@
 tags:
-  simple_api: ${res_simple_api_production_serviceTag}
-  simple_ui: ${res_simple_ui_production_serviceTag}
+  simple_api: ${res_simpledeploy_bundle_distributed_simple_api}
+  simple_ui: ${res_simpledeploy_bundle_distributed_simple_ui}
