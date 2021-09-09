@@ -1,4 +1,5 @@
 template:
+  branch: main
   namespace: CoreDevOps
   names:
     - SyncTemplates
