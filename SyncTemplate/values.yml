@@ -1,6 +1,9 @@
 template:
-  id: 12
   namespace: CoreDevOps
-  name: SyncTemplates
+  names:
+    - SyncTemplates
+    - DummyCI
+    - DummyCD
+    - GoCI
 integration:
   name: art_admin_token
