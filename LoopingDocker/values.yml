@@ -5,6 +5,6 @@ github:
 pipeline:
   name: "test_loop"
 
-images:
-  - simpleapi
-  - simpleui
+# images:
+#   - simpleapi
+#   - simpleui
