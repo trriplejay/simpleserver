@@ -4,6 +4,7 @@ github:
   repoPath: trriplejay/simpleserver
 pipeline:
   name: "test_loop"
+multiple: true
 
 images:
   - simpleapi
