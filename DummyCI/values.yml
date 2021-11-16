@@ -1,9 +1,9 @@
 pipeline:
-  name: simple_notification_pipe
+  name: simple_test_pipe
 github:
-  name: simple_notification
+  name: simple_test
   branch: {{gitBranch}}
 image:
-  name: simple_notification_img
-  imagename: simplenotification
+  name: simple_test_img
+  imagename: simpletest
   imagetag: latest
