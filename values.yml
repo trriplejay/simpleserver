@@ -1,0 +1,17 @@
+pipeline:
+  name: "punchh_cd"
+services:
+  - simple_ui
+  - simple_api
+  - simple_notification
+  - simple_test
+images:
+  - simple_api_img
+  - simple_ui_img
+  - simple_notification_img
+  - simple_test_img
+
+cd_repo:
+  name: simple_cd
+  path: trriplejay/simpleserver
+  branch: cd-demo
