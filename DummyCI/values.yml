@@ -1,5 +1,5 @@
 pipeline:
-  name: simple_ui_pipe
+  name: simple_ui
 github:
   name: simple_ui
   branch: {{gitBranch}}
