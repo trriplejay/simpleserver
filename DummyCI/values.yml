@@ -4,6 +4,6 @@ github:
   name: simple_api
   branch: {{gitBranch}}
 image:
-  name: simple_api_image
+  name: simple_api_img
   imagename: simple_api
   imagetag: latest
