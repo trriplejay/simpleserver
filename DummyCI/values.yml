@@ -4,6 +4,6 @@ github:
   name: simple_notification
   branch: {{gitBranch}}
 image:
-  name: simple_notification_image
+  name: simple_notification_img
   imagename: simple_notification
   imagetag: latest
