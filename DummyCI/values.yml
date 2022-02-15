@@ -4,6 +4,6 @@ github:
   name: simple_test
   branch: {{gitBranch}}
 image:
-  name: simple_test_image
+  name: simple_test_img
   imagename: simple_test
   imagetag: latest
