@@ -6,3 +6,4 @@ source:
 integration: github
 pipeline:
   name: conditional_pipeline
+name: foo
