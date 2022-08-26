@@ -7,7 +7,10 @@
     "test": "./node_modules/prettier/bin-prettier.js --list-different --single-quote ./**/*.js"
   },
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "lodash": "^4.17.21",
+    "requestjs": "^1.0.3",
+    "winston": "^3.8.1"
   },
   "devDependencies": {
     "prettier": "^1.17.1"
