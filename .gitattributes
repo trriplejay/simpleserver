@@ -1,1 +1,2 @@
 *.gitlfs filter=lfs diff=lfs merge=lfs -text
+test.gitlfs filter=lfs diff=lfs merge=lfs -text
